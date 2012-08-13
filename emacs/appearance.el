@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/bin/dotfiles/emacs/packages/color-theme")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/color-theme")
 
 ;; Remove useless GUI components.
 (setq inhibit-startup-echo-area-message t)

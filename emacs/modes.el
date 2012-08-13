@@ -1,9 +1,9 @@
-(add-to-list 'load-path "~/bin/dotfiles/emacs/packages/imenu")
-(add-to-list 'load-path "~/bin/dotfiles/emacs/packages/auctex")
-(add-to-list 'load-path "~/bin/dotfiles/emacs/packages/autopair")
-(add-to-list 'load-path "~/bin/dotfiles/emacs/packages/yasnippet")
-(add-to-list 'load-path "~/bin/dotfiles/emacs/packages/workgroups")
-(add-to-list 'load-path "~/bin/dotfiles/emacs/packages/iedit")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/imenu")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/auctex")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/autopair")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/yasnippet")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/workgroups")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
 
 ;; Enable ido-mode for opening buffers.
 (ido-mode)
