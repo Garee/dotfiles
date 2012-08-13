@@ -7,8 +7,8 @@ URxvt*termName: screen-256color
 URxvt.iconFile: /mnt/beta/pictures/Other/arch-linux/start-buttons/archicon.png
 URxvt.cursorUnderline: true
 
-urxvt*foreground: #f2f2f2
-urxvt*background: #101010
+urxvt*foreground: #ffffff
+urxvt*background: #1d1d1d
 urxvt*color0: #101010
 urxvt*color1: #f13a21
 urxvt*color2: #93f91d
