@@ -1,13 +1,22 @@
 #!/bin/bash
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+source ~/.dotfiles/bash/bashfunc
+
+PS1='\w → '
+EDITOR='emacsclient -c'
+PATH=$PATH:$HOME/bin
 
 alias ls='ls++'
+alias rm='trash-put'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 alias e='emacsclient -c'
 alias et='emacsclient -t'
 alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit"
-alias rm='trash-put'
 
 alias packup='sudo pacman -Syu'
 alias packdb='sudo pacman -Syy'
@@ -16,9 +25,5 @@ alias packrm='sudo pacman -Rns'
 alias packs='pacman -Ss'
 alias packers='packer -Ss'
 alias packerin='sudo -E packer -S'
-
-PS1='\w → '
-EDITOR='emacsclient -c'
-PATH=$PATH:$HOME/bin/scripts
 
 
