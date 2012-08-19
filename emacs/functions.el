@@ -22,3 +22,10 @@
 	  (rename-buffer new-name)
 	  (set-visited-file-name new-name)
 	  (set-buffer-modified-p nil))))))
+
+(defun sm-greek-lambda ()
+  "Replace 'lambda' with the greek symbol."
+  (font-lock-add-keywords nil `(("\\<lambda\\>"
+				 (0 (progn (compose-region (match-beginning 0) (match-end 0)
+							   ,(make-char 'greek-iso8859-7 107))
+					   nil))))))

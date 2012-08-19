@@ -26,7 +26,9 @@
 	(right-fringe . 0)
 	(menu-bar-lines . 0)))
 
-
+;; Replace all occurences of 'lambda' with the greek symbol.
+(add-hook 'emacs-lisp-mode-hook 'sm-greek-lambda)
+(add-hook 'python-mode-hook 'sm-greek-lambda)
 
 ;; Set the theme.
 (require 'color-theme)
