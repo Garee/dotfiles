@@ -1,0 +1,14 @@
+[user]
+	name = Gary Blackwood
+	email = gareeblackwood@gmail.com
+[core]
+	editor = emacs
+[color]
+	ui = true
+[alias]
+	co = checkout
+	a = add
+	c = commit
+	s = status
+	b = branch
+	l = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
