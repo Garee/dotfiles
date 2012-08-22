@@ -5,6 +5,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/workgroups")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/js2")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/multi-web-mode")
 
 ;; Enable ido-mode for opening buffers.
 (ido-mode)
@@ -61,6 +62,15 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (setq js2-mirror-mode nil)
+
+;; Multi-web mode configuration
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'html-mode)
+(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+(multi-web-global-mode 1)
 
 ;; Enable spellchecking for .txt and .tex
 (dolist (hook '(text-mode-hook))
