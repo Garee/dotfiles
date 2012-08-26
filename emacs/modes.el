@@ -77,5 +77,7 @@
   (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(tex-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
+(dolist (hook '(org-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode 0))))
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
