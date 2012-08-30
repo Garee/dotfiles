@@ -4,7 +4,7 @@ URxvt.hinting: false
 URxvt.font: xft:Terminus:size=10
 URxvt.dpi: 96
 URxvt*termName: screen-256color
-URxvt.iconFile: /mnt/beta/pictures/Other/arch-linux/start-buttons/archicon.png
+URxvt.iconFile: /mnt/media/pictures/Other/arch-linux/start-buttons/archicon.png
 URxvt.cursorUnderline: true
 
 urxvt*foreground: #ffffff
