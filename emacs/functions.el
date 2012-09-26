@@ -29,3 +29,11 @@
 				 (0 (progn (compose-region (match-beginning 0) (match-end 0)
 							   ,(make-char 'greek-iso8859-7 107))
 					   nil))))))
+
+(defun c-c++-header ()
+  "Sets the the appropriate mode for a header file."
+  (interactive)
+  (let ((c-file (concat (substring (buffer-file-name) 0 -1) "c")))
+    (if (file-exists-p c-file)
+	(c-mode)
+      (c++-mode))))

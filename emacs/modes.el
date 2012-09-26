@@ -81,3 +81,6 @@
   (add-hook hook (lambda () (flyspell-mode 0))))
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
+;; Choose the correct mode for header files.
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
