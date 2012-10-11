@@ -84,3 +84,6 @@
 
 ;; Choose the correct mode for header files.
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
+
+;; Switch to c-mode when working on an OpenCL kernel buffer.
+(add-to-list 'auto-mode-alist '("\\.cl$" . c-mode))
