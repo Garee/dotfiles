@@ -6,6 +6,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/js2")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/multi-web-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/haskell-mode")
 
 ;; Enable ido-mode for opening buffers.
 (ido-mode)
@@ -87,3 +88,8 @@
 
 ;; Switch to c-mode when working on an OpenCL kernel buffer.
 (add-to-list 'auto-mode-alist '("\\.cl$" . c-mode))
+
+;; haskell-mode configuration
+(load "haskell-site-file")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
