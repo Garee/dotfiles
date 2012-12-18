@@ -68,18 +68,18 @@
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                  (js2-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
 (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
 (multi-web-global-mode 1)
 
 ;; Enable spellchecking for .txt and .tex
 (dolist (hook '(text-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode 1))))
+	(add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(tex-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode 1))))
+	(add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(org-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode 0))))
+	(add-hook hook (lambda () (flyspell-mode 0))))
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
@@ -93,3 +93,12 @@
 (load "haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+;; CSS
+(setq css-indent-offset 2)
+(add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
+
+;; Ruby on Rails
+(add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))

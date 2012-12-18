@@ -27,3 +27,5 @@ alias packers='packer -Ss'
 alias packerin='sudo -E packer -S'
 
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

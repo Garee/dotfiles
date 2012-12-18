@@ -37,3 +37,8 @@
     (if (file-exists-p c-file)
 	(c-mode)
       (c++-mode))))
+
+(defun indent-all ()
+  "Indents the entire buffer."
+  (interactive)
+  (save-excursion (indent-region (point-min) (point-max) nil)))
