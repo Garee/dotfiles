@@ -17,17 +17,17 @@
 
 ;; This program is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 ;;
 ;; Another stab at making braces and quotes pair like in
 ;; TextMate:
-;; 
+;;
 ;; * Opening braces/quotes are autopaired;
 ;; * Closing braces/quotes are autoskipped;
 ;; * Backspacing an opening brace/quote autodeletes its adjacent pair.
@@ -38,8 +38,8 @@
 ;;
 ;;; Installation:
 ;;
-;;   (require 'autopair)
-;;   (autopair-global-mode) ;; to enable in all buffers
+;; (require 'autopair)
+;; (autopair-global-mode) ;; to enable in all buffers
 ;;
 ;; To enable autopair in just some types of buffers, comment out the
 ;; `autopair-global-mode' and put autopair-mode in some major-mode
@@ -69,15 +69,15 @@
 ;; autopaired/autoskiped in all situations; the decision to autopair
 ;; or autoskip a brace is taken according to the following table:
 ;;
-;;  +---------+------------+-----------+-------------------+
-;;  | 1234567 | autopair?  | autoskip? | notes             |
-;;  +---------+------------+-----------+-------------------+
-;;  |  (())   |  yyyyyyy   |  ---yy--  | balanced          |
-;;  +---------+------------+-----------+-------------------+
-;;  |  (()))  |  ------y   |  ---yyy-  | too many closings |
-;;  +---------+------------+-----------+-------------------+
-;;  |  ((())  |  yyyyyyy   |  -------  | too many openings |
-;;  +---------+------------+-----------+-------------------+
+;; +---------+------------+-----------+-------------------+
+;; | 1234567 | autopair? | autoskip? | notes |
+;; +---------+------------+-----------+-------------------+
+;; | (()) | yyyyyyy | ---yy-- | balanced |
+;; +---------+------------+-----------+-------------------+
+;; | (())) | ------y | ---yyy- | too many closings |
+;; +---------+------------+-----------+-------------------+
+;; | ((()) | yyyyyyy | ------- | too many openings |
+;; +---------+------------+-----------+-------------------+
 ;;
 ;; The table is read like this: in a buffer with 7 characters laid out
 ;; like the first column, an "y" marks points where an opening brace
@@ -104,20 +104,20 @@
 ;; `autopair-handle-action-fns' and `autopair-extra-pairs'.
 ;;
 ;; `autopair-dont-pair' lets you define special cases of characters
-;; you don't want paired.  Its default value skips pairing
+;; you don't want paired. Its default value skips pairing
 ;; single-quote characters when inside a comment literal, even if the
 ;; language syntax tables does pair these characters.
 ;;
-;; (defvar autopair-dont-pair `(:string (?') :comment  (?'))
+;; (defvar autopair-dont-pair `(:string (?') :comment (?'))
 ;;
 ;; As a further example, to also prevent the '{' (opening brace)
 ;; character from being autopaired in C++ comments use this in your
 ;; .emacs.
 ;;
 ;; (add-hook 'c++-mode-hook
-;;           #'(lambda ()
-;;                (push ?{
-;;                      (getf autopair-dont-pair :comment))))
+;; #'(lambda ()
+;; (push ?{
+;; (getf autopair-dont-pair :comment))))
 ;;
 ;; `autopair-handle-action-fns' lets you override/extend the actions
 ;; taken by autopair after it decides something must be paired,skipped
@@ -125,19 +125,19 @@
 ;; this for example:
 ;;
 ;; (add-hook 'python-mode-hook
-;;           #'(lambda ()
-;;               (setq autopair-handle-action-fns
-;;                     (list #'autopair-default-handle-action
-;;                           #'autopair-python-triple-quote-action))))
+;; #'(lambda ()
+;; (setq autopair-handle-action-fns
+;; (list #'autopair-default-handle-action
+;; #'autopair-python-triple-quote-action))))
 ;;
 ;; It's also useful to deal with latex's mode use of the "paired
 ;; delimiter" syntax class.
 ;;
 ;; (add-hook 'latex-mode-hook
-;;           #'(lambda ()
-;;               (set (make-local-variable 'autopair-handle-action-fns)
-;;                    (list #'autopair-default-handle-action
-;;                          #'autopair-latex-mode-paired-delimiter-action))))
+;; #'(lambda ()
+;; (set (make-local-variable 'autopair-handle-action-fns)
+;; (list #'autopair-default-handle-action
+;; #'autopair-latex-mode-paired-delimiter-action))))
 ;;
 ;; `autopair-extra-pairs' lets you define extra pairing and skipping
 ;; behaviour for pairs not programmed into the syntax table. Watch
@@ -146,27 +146,27 @@
 ;; only in code, use:
 ;;
 ;; (add-hook 'c++-mode-hook
-;;           #'(lambda ()
-;;               (push '(?< . ?>)
-;;                     (getf autopair-extra-pairs :code))))
+;; #'(lambda ()
+;; (push '(?< . ?>)
+;; (getf autopair-extra-pairs :code))))
 ;;
 ;; if you program in emacs-lisp you might also like the following to
 ;; pair backtick and quote
 ;;
 ;; (add-hook 'emacs-lisp-mode-hook
-;;           #'(lambda ()
-;;               (push '(?` . ?')
-;;                     (getf autopair-extra-pairs :comment))
-;;               (push '(?` . ?')
-;;                     (getf autopair-extra-pairs :string))))
+;; #'(lambda ()
+;; (push '(?` . ?')
+;; (getf autopair-extra-pairs :comment))
+;; (push '(?` . ?')
+;; (getf autopair-extra-pairs :string))))
 ;;
 ;;; Bugs:
 ;;
 ;; * Quote pairing/skipping inside comments is not perfect...
 ;;
 ;; * See the last section on monkey-patching for the `defadvice'
-;;   tricks used to make `autopair-autowrap' work with `cua-mode' and
-;;   `delete-selection-mode'.
+;; tricks used to make `autopair-autowrap' work with `cua-mode' and
+;; `delete-selection-mode'.
 ;;
 ;;; Credit:
 ;;
@@ -176,6 +176,7 @@
 
 ;; requires
 (require 'cl)
+(require 'thingatpt)
 
 ;; variables
 (defvar autopair-pair-criteria 'help-balance
@@ -192,13 +193,13 @@ criterious when skipping.")
 
 (defvar autopair-emulation-alist nil
   "A dinamic keymap for autopair set mostly from the current
-  syntax table.")
+syntax table.")
 
 (defvar autopair-dont-activate nil
   "Control activation of `autopair-global-mode'.
 
 Set this to a non-nil value to skip activation of `autopair-mode'
-in certain contexts.  If however the value satisfies `functionp'
+in certain contexts. If however the value satisfies `functionp'
 and is a function of no arguments, the function is called and it is
 the return value that decides.")
 (make-variable-buffer-local 'autopair-dont-activate)
@@ -210,54 +211,54 @@ It's a Common-lisp-style even-numbered property list, each pair
 of elements being of the form (TYPE , PAIRS). PAIRS is a mixed
 list whose elements are cons cells, which look like cells look
 like (OPENING . CLOSING). Autopair pairs these like
-parenthesis. 
+parenthesis.
 
 TYPE can be one of:
 
 :string : whereby PAIRS will be considered only when inside a
-          string literal
+string literal
 
 :comment : whereby PAIRS will be considered only when inside a comment
 
 :code : whereby PAIRS will be considered only when outisde a
-        string and a comment.
+string and a comment.
 
 :everywhere : whereby PAIRS will be considered in all situations
 
 In Emacs-lisp, this might be useful
 
 (add-hook 'emacs-lisp-mode-hook
-          #'(lambda ()
-              (setq autopair-extra-pairs `(:comment ((?`. ?'))))))
+#'(lambda ()
+(setq autopair-extra-pairs `(:comment ((?`. ?'))))))
 
 
 Note that this does *not* work for single characters,
-e.x. characters you want to behave as quotes.  See the
+e.x. characters you want to behave as quotes. See the
 docs/source comments for more details.")
 
 (make-variable-buffer-local 'autopair-extra-pairs)
 
-(defvar autopair-dont-pair `(:string (?') :comment  (?'))
+(defvar autopair-dont-pair `(:string (?') :comment (?'))
   "Characters for which to skip any pairing behaviour.
 
 This variable overrides `autopair-pair-criteria' and
 `autopair-extra-pairs'. It does not
-  (currently) affect the skipping behaviour.
+(currently) affect the skipping behaviour.
 
 It's a Common-lisp-style even-numbered property list, each pair
 of elements being of the form (TYPE , CHARS). CHARS is a list of
 characters and TYPE can be one of:
 
 :string : whereby characters in CHARS will not be autopaired when
-          inside a string literal
+inside a string literal
 
 :comment : whereby characters in CHARS will not be autopaired when
-          inside a comment
+inside a comment
 
 :never : whereby characters in CHARS won't even have their
-         bindings replaced by autopair's. This particular option
-         should be used for troubleshooting and requires
-         `autopair-mode' to be restarted to have any effect.")
+bindings replaced by autopair's. This particular option
+should be used for troubleshooting and requires
+`autopair-mode' to be restarted to have any effect.")
 (make-variable-buffer-local 'autopair-dont-pair)
 
 (defvar autopair-action nil
@@ -300,7 +301,7 @@ list, or call it from your handlers.")
 (defvar autopair-handle-wrap-action-fns '()
   "Autopair wrap handlers to run *instead* of the default handler.
 
-Each element is a function taking four arguments (ACTION, PAIR, 
+Each element is a function taking four arguments (ACTION, PAIR,
 POS-BEFORE and REGION-BEFORE), which are the three elements of the
 `autopair-wrap-action' variable, which see.
 
@@ -326,11 +327,12 @@ For now, simply returns `last-command-event'"
 ;;
 (define-globalized-minor-mode autopair-global-mode autopair-mode autopair-on)
 
-(defun autopair-on () (unless (or buffer-read-only
-                                  (if (functionp autopair-dont-activate)
-                                      (funcall autopair-dont-activate)
-                                    autopair-dont-activate))
-			(autopair-mode 1)))
+(defun autopair-on ()
+  (unless (or buffer-read-only
+              (if (functionp autopair-dont-activate)
+                  (funcall autopair-dont-activate)
+                autopair-dont-activate))
+    (autopair-mode 1)))
 
 (define-minor-mode autopair-mode
   "Automagically pair braces and quotes like in TextMate."
@@ -344,8 +346,7 @@ For now, simply returns `last-command-event'"
            (define-key map (kbd "<backspace>") 'autopair-backspace)
            (define-key map [backspace] 'autopair-backspace)
            (define-key map (kbd "DEL") 'autopair-backspace)
-           (define-key map [return] 'autopair-newline)
-           (define-key map (kbd "RET") 'autopair-newline)
+           (define-key map [remap newline-and-indent] 'autopair-newline)
            (dotimes (char 256) ;; only searches the first 256 chars,
              ;; TODO: is this enough/toomuch/stupid?
              (unless (member char
@@ -363,7 +364,7 @@ For now, simply returns `last-command-event'"
                         ;; syntax class "string quote
                         (define-key map (string char) 'autopair-insert-or-skip-quote))
                        ((eq class (car (string-to-syntax "$")))
-                        ;; syntax class "paired-delimiter" 
+                        ;; syntax class "paired-delimiter"
                         ;;
                         ;; Apropos this class, see Issues 18, 25 and
                         ;; elisp info node "35.2.1 Table of Syntax
@@ -396,7 +397,7 @@ For now, simply returns `last-command-event'"
         (t
          (setq autopair-emulation-alist nil)
          (remove-hook 'emulation-mode-map-alists 'autopair-emulation-alist)
-         (remove-hook 'post-command-hook         'autopair-post-command-handler 'local))))
+         (remove-hook 'post-command-hook 'autopair-post-command-handler 'local))))
 
 ;; helper functions
 ;;
@@ -406,15 +407,15 @@ For now, simply returns `last-command-event'"
 A list of four elements is returned:
 
 - SYNTAX-INFO is either the result `syntax-ppss' or the result of
-  calling `parse-partial-sexp' with the appropriate
-  bounds (previously calculated with `syntax-ppss'.
+calling `parse-partial-sexp' with the appropriate
+bounds (previously calculated with `syntax-ppss'.
 
 - WHERE-SYM can be one of the symbols :string, :comment or :code.
 
 - QUICK-SYNTAX-INFO is always the result returned by `syntax-ppss'.
 
 - BOUNDS are the boudaries of the current string or comment if
-  we're currently inside one."
+we're currently inside one."
   (let* ((quick-syntax-info (syntax-ppss))
          (string-or-comment-start (nth 8 quick-syntax-info)))
     (cond (;; inside a string, recalculate
@@ -455,23 +456,32 @@ A list of four elements is returned:
                              pair-list))
                    (remove-if-not #'listp autopair-extra-pairs)))))))
 
+(defun autopair-autowrap-satisfies-criteria (point region)
+  (and point region
+       (eq point (car region))
+       (or (not (eq autopair-autowrap-criteria 'help-balance))
+           (save-excursion
+             (let* ((start-syntax (syntax-ppss (car region)))
+                    (end-syntax (syntax-ppss (cdr region))))
+               (and (eq (nth 0 start-syntax) (nth 0 end-syntax))
+                    (eq (nth 3 start-syntax) (nth 3 end-syntax))))))))
+
+(defun autopair-calculate-wrap-region ()
+  (if (and transient-mark-mode mark-active)
+      (progn
+        (when (> (point) (mark))
+          (exchange-point-and-mark))
+        (cons (region-beginning) (region-end)))
+    (bounds-of-thing-at-point autopair-autowrap)))
+
 (defun autopair-calculate-wrap-action ()
-  (when (and transient-mark-mode mark-active)
-    (when (> (point) (mark))
-      (exchange-point-and-mark))
-    (save-excursion
-      (let* ((region-before (cons (region-beginning)
-                                  (region-end)))
-             (point-before (point))
-             (start-syntax (syntax-ppss (car region-before)))
-             (end-syntax   (syntax-ppss (cdr region-before))))
-        (when (or (not (eq autopair-autowrap 'help-balance))
-                  (and (eq (nth 0 start-syntax) (nth 0 end-syntax))
-                       (eq (nth 3 start-syntax) (nth 3 end-syntax))))
-          (list 'wrap (or (second autopair-action)
-                          (autopair-find-pair autopair-inserted))
-                point-before
-                region-before))))))
+  (let* ((region-before (autopair-calculate-wrap-region))
+         (point-before (point)))
+    (when (autopair-autowrap-satisfies-criteria point-before region-before)
+      (list 'wrap (or (second autopair-action)
+                      (autopair-find-pair autopair-inserted))
+            point-before
+            region-before))))
 
 (defun autopair-original-binding ()
   (or (key-binding `[,autopair-inserted])
@@ -483,7 +493,8 @@ A list of four elements is returned:
          (beyond-cua (let ((cua--keymap-alist nil))
                        (autopair-original-binding)))
          (beyond-autopair (autopair-original-binding)))
-    (when autopair-autowrap
+    (when (and autopair-autowrap
+               (eq (car autopair-action) 'opening))
       (setq autopair-wrap-action (autopair-calculate-wrap-action)))
     
     (setq this-original-command beyond-cua)
@@ -495,11 +506,16 @@ A list of four elements is returned:
           (blink-matching-paren (not autopair-action)))
       (call-interactively beyond-autopair))))
 
-(defvar autopair-autowrap 'help-balance
-  "If non-nil autopair attempts to wrap the selected region.
+(defvar autopair-autowrap t
+  "If non-nil, autopair attempts to wrap the selected region,
+otherwise attempts to wrap a region of the thing that can be
+obtained by `bounds-of-thing-at-point'. If nil, autopair never
+wrap.")
 
-This is also done in an optimistic \"try-to-balance\" fashion.
-Set this to to 'help-balance to be more criterious when wrapping.")
+(defvar autopair-autowrap-criteria 'help-balance
+  "How to decide whether to wrap the selected region or a region of the thing.
+
+Set this to 'help-balance to be more criterious when wrapping.")
 
 (defvar autopair-skip-whitespace nil
   "If non-nil also skip over whitespace when skipping closing delimiters.
@@ -571,7 +587,7 @@ returned) and uplisting stops there."
     (error nil)))
 
 ;; interactive commands and their associated predicates
-;; 
+;;
 (defun autopair-insert-or-skip-quote ()
   (interactive)
   (setq autopair-inserted (autopair-calculate-inserted))
@@ -641,7 +657,7 @@ returned) and uplisting stops there."
 
 (defun autopair-in-unterminated-string-p (autopair-triplet)
   (and (eq autopair-inserted (fourth (third autopair-triplet)))
-       (condition-case nil (progn (scan-sexps (ninth (third autopair-triplet)) 1) nil) (error t))))     
+       (condition-case nil (progn (scan-sexps (ninth (third autopair-triplet)) 1) nil) (error t))))
 
 
 (defun autopair-insert-opening ()
@@ -704,8 +720,8 @@ by this command. Then place point after the first, indented.\n\n"
                ;; 2. up-listing stopped at a list that contains our original point
                ;;
                ;; 3. up-listing stopped at a list that does not
-               ;;    contain out original point but its starting
-               ;;    delimiter matches the one we expect.
+               ;; contain out original point but its starting
+               ;; delimiter matches the one we expect.
                (and pos-pair
                     (or (eq (car pos-pair) (cdr pos-pair))
                         (< orig-point (cdr pos-pair))
@@ -746,12 +762,12 @@ by this command. Then place point after the first, indented.\n\n"
                             ;; `autopair-forward') returned an error.
                             ;; typically we don't want to autopair,
                             ;; unless one of the following occurs:
-                            ;; 
+                            ;;
                             (cond (;; 1. The error is *not* of type "containing
-                                   ;;    expression ends prematurely", which means
-                                   ;;    we're in the "too-many-openings" situation
-                                   ;;    and thus want to autopair.
-                                   (not (string-match "prematurely" (second err)))  
+                                   ;; expression ends prematurely", which means
+                                   ;; we're in the "too-many-openings" situation
+                                   ;; and thus want to autopair.
+                                   (not (string-match "prematurely" (second err)))
                                    t)
                                   (;; 2. We stopped at a closing parenthesis. Do
                                    ;; autopair if we're in a mixed parens situation,
@@ -762,7 +778,7 @@ by this command. Then place point after the first, indented.\n\n"
                                    ;; also different from the expected. The second
                                    ;; `scan-lists' places point at the closing of the
                                    ;; last list we forwarded over.
-                                   ;; 
+                                   ;;
                                    (condition-case err
                                        (prog1
                                            (eq (char-after (scan-lists (point) -1 0))
@@ -789,12 +805,22 @@ by this command. Then place point after the first, indented.\n\n"
 
 ;; post-command-hook stuff
 ;;
+(defun autopair-recover-from-error (error)
+  (ignore-errors
+    (message "autopair: %s" error)
+    (autopair-mode -1)
+    error))
+
 (defun autopair-post-command-handler ()
+  (condition-case error
+      (autopair-post-command-handler-1)
+    (error (autopair-recover-from-error error))))
+
+(defun autopair-post-command-handler-1 ()
   "Performs pairing and wrapping based on `autopair-action' and
 `autopair-wrap-action'. "
   (when (and autopair-wrap-action
              (notany #'null autopair-wrap-action))
-    
     (if autopair-handle-wrap-action-fns
         (condition-case err
             (mapc #'(lambda (fn)
@@ -865,7 +891,7 @@ by this command. Then place point after the first, indented.\n\n"
                      (delete-char skipped)
                    (forward-char skipped))
                  (forward-char))
-	       (autopair-blink-matching-open)))
+                 (autopair-blink-matching-open)))
             (;; autodelete closing delimiter
              (and (eq 'backspace action)
                   (eq pair (char-after (point))))
@@ -940,7 +966,7 @@ by this command. Then place point after the first, indented.\n\n"
         (t
          t)))
 
-;; example latex paired-delimiter helper 
+;; example latex paired-delimiter helper
 ;;
 (defun autopair-latex-mode-paired-delimiter-action (action pair pos-before)
   "Pair or skip latex's \"paired delimiter\" syntax in math mode. Added AucText support, thanks Massimo Lauria"
@@ -966,7 +992,7 @@ by this command. Then place point after the first, indented.\n\n"
         (insert pair)
         (backward-char)))))
 
-;; Commands and predicates for the autopair-extra* feature 
+;; Commands and predicates for the autopair-extra* feature
 ;;
 
 (defun autopair-extra-insert-opening ()
@@ -1017,7 +1043,7 @@ by this command. Then place point after the first, indented.\n\n"
 
 ;; Commands and tex-mode specific handler functions for the "paired
 ;; delimiter" syntax class.
-;; 
+;;
 (defun autopair-insert-or-skip-paired-delimiter ()
   " insert or skip a character paired delimiter"
   (interactive)
@@ -1030,7 +1056,7 @@ by this command. Then place point after the first, indented.\n\n"
               (autopair-document-bindings)))
 
 
-
+
 ;; monkey-patching: Compatibility with delete-selection-mode and cua-mode
 ;;
 ;; Ideally one would be able to use functions as the value of the

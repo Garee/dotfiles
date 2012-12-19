@@ -45,10 +45,7 @@
 (setq ac-use-menu-map t)
 (define-key ac-menu-map "\C-n" 'ac-next)
 (define-key ac-menu-map "\C-p" 'ac-previous)
-
-;; Fix conflict with autopair-newline.
-(define-key ac-completing-map [return] 'ac-complete)
-
+(add-to-list 'ac-modes 'html-mode)
 (defadvice ac-common-setup (after give-yasnippet-highest-priority activate)
   (setq ac-sources (delq 'ac-source-yasnippet ac-sources))
   (add-to-list 'ac-sources 'ac-source-yasnippet))
