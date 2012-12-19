@@ -17,9 +17,11 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
+;; auctex mode
 (load "auctex.el" nil t t)
 (setq TeX-PDF-mode t)
 
+;; autopair mode
 (require 'autopair)
 (add-hook 'term-mode-hook
 	  #'(lambda ()
@@ -28,12 +30,11 @@
 (autopair-global-mode)
 (setq autopair-autowrap t)
 
+;; yasnippet mode
 (require 'yasnippet)
 (yas/global-mode 1)
 
-(require 'workgroups)
-(workgroups-mode 1)
-
+;; org mode
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-startup-indented t)
@@ -56,14 +57,15 @@
 	("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
 	 "* %?\n%U\n")))
 
+;; iedit mode
 (require 'iedit)
 
-;; Enhance javascript mode with js2.
+;; js2 mode
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (setq js2-mirror-mode nil)
 
-;; Multi-web mode configuration
+;; Multi-web mode
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
