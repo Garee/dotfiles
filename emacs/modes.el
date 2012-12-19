@@ -46,6 +46,7 @@
 (define-key ac-menu-map "\C-n" 'ac-next)
 (define-key ac-menu-map "\C-p" 'ac-previous)
 (add-to-list 'ac-modes 'html-mode)
+(add-to-list 'ac-modes 'haskell-mode)
 (defadvice ac-common-setup (after give-yasnippet-highest-priority activate)
   (setq ac-sources (delq 'ac-source-yasnippet ac-sources))
   (add-to-list 'ac-sources 'ac-source-yasnippet))
