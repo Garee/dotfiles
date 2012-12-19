@@ -29,3 +29,5 @@
 ;; Always line wrap.
 (global-visual-line-mode t)
 
+;; Replace text with inserted while mark is active.
+(delete-selection-mode 1)

@@ -6,6 +6,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/js2")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/multi-web-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/haskell-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-complete")
 
 ;; Enable ido-mode for opening buffers.
 (ido-mode)
@@ -34,6 +35,23 @@
 (require 'yasnippet)
 (yas/global-mode 1)
 (setq yas/prompt-functions '(yas/dropdown-prompt))
+
+;; auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.dotfiles/emacs/packages/auto-complete/dict")
+(ac-config-default)
+(setq ac-auto-show-menu t)
+(setq ac-ignore-case nil)
+(setq ac-use-menu-map t)
+(define-key ac-menu-map "\C-n" 'ac-next)
+(define-key ac-menu-map "\C-p" 'ac-previous)
+
+;; Fix conflict with autopair-newline.
+(define-key ac-completing-map [return] 'ac-complete)
+
+(defadvice ac-common-setup (after give-yasnippet-highest-priority activate)
+  (setq ac-sources (delq 'ac-source-yasnippet ac-sources))
+  (add-to-list 'ac-sources 'ac-source-yasnippet))
 
 ;; org mode
 (require 'org-install)
