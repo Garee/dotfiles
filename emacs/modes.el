@@ -33,6 +33,7 @@
 ;; yasnippet mode
 (require 'yasnippet)
 (yas/global-mode 1)
+(setq yas/prompt-functions '(yas/dropdown-prompt))
 
 ;; org mode
 (require 'org-install)
@@ -69,18 +70,19 @@
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+		  (ruby-mode "<%==\\|<%=\\|<%#\\|<%" "%>")
                   (js2-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
-(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5" "erb"))
 (multi-web-global-mode 1)
 
 ;; Enable spellchecking for .txt and .tex
 (dolist (hook '(text-mode-hook))
-	(add-hook hook (lambda () (flyspell-mode 1))))
+  (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(tex-mode-hook))
-	(add-hook hook (lambda () (flyspell-mode 1))))
+  (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(org-mode-hook))
-	(add-hook hook (lambda () (flyspell-mode 0))))
+  (add-hook hook (lambda () (flyspell-mode 0))))
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
