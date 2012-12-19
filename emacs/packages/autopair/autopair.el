@@ -330,7 +330,7 @@ For now, simply returns `last-command-event'"
                                   (if (functionp autopair-dont-activate)
                                       (funcall autopair-dont-activate)
                                     autopair-dont-activate))
-                                  (autopair-mode 1)))
+			(autopair-mode 1)))
 
 (define-minor-mode autopair-mode
   "Automagically pair braces and quotes like in TextMate."
@@ -865,7 +865,7 @@ by this command. Then place point after the first, indented.\n\n"
                      (delete-char skipped)
                    (forward-char skipped))
                  (forward-char))
-                 (autopair-blink-matching-open)))
+	       (autopair-blink-matching-open)))
             (;; autodelete closing delimiter
              (and (eq 'backspace action)
                   (eq pair (char-after (point))))

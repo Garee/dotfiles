@@ -44,9 +44,6 @@
 	       '(:eval (if overwrite-mode "Ovr" "Ins"))
 	       '(:eval (when (buffer-modified-p) (concat ":Mod")))
 	       '(:eval (when buffer-read-only (concat ":RO")))
-	       "]"
-	       '(:eval (propertize (wg-mode-line-string)
-				   'face 'font-lock-default-face))
-	       " ["
+	       "] ["
 	       '(:eval (format-time-string "%H:%M"))
 	       "]%M%-"))
