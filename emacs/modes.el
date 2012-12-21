@@ -1,6 +1,5 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/imenu")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auctex")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/autopair")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/yasnippet")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/js2")
@@ -22,14 +21,10 @@
 (load "auctex.el" nil t t)
 (setq TeX-PDF-mode t)
 
-;; autopair mode
-(require 'autopair)
-(add-hook 'term-mode-hook
-	  #'(lambda ()
-	      (setq autopair-dont-activate t)
-	      (autopair-mode -1)))
-(autopair-global-mode)
-(setq autopair-autowrap t)
+;; electric pair modeke
+(add-hook 'ruby-mode-hook
+	  (lambda ()
+	    (define-key ruby-mode-map "<" 'electric-pair)))
 
 ;; yasnippet mode
 (require 'yasnippet)
@@ -93,12 +88,8 @@
 (multi-web-global-mode 1)
 
 ;; Enable spellchecking for .txt and .tex
-(dolist (hook '(text-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(tex-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
-(dolist (hook '(org-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode 0))))
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
