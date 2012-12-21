@@ -49,3 +49,10 @@
         (save-excursion (newline-and-indent)))
     (newline arg)
     (indent-according-to-mode)))
+
+(defun indent-buffer ()
+  "Indent the whole buffer."
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))

@@ -1,6 +1,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-indent-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/imenu")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/yasnippet")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auctex")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/js2")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/multi-web-mode")
@@ -12,9 +13,10 @@
 (setq ido-everywhere t)
 (autoload 'idomenu "idomenu" nil t)
 
-;; electric pair modeke
+;; electric pair mode
 (electric-pair-mode)
 
+;; auto indent mode
 (require 'auto-indent-mode)
 (auto-indent-global-mode)
 
@@ -24,6 +26,11 @@
 
 ;; iedit mode
 (require 'iedit)
+
+;; yasnippet mode
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas/prompt-functions '(yas/dropdown-prompt))
 
 ;; auctex mode
 (load "auctex.el" nil t t)
@@ -38,7 +45,7 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (setq js2-basic-offset 2)
 
-;; Multi-web mode
+;; multi-web mode
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
@@ -67,5 +74,3 @@
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-
-
