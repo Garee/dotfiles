@@ -38,7 +38,14 @@
 	(c-mode)
       (c++-mode))))
 
-(defun indent-all ()
-  "Indents the entire buffer."
-  (interactive)
-  (save-excursion (indent-region (point-min) (point-max) nil)))
+(defvar electric-return-set "[\]}\)\"]")
+(defun electric-return (arg)
+  "If the text after the cursor matches `electic-return-set' then
+  open and indent an empty line between the cursor and the text.  Move the
+  cursor to the new line."
+  (interactive "P")
+  (let ((case-fold-search nil))
+    (if (looking-at electric-return-set)
+        (save-excursion (newline-and-indent)))
+    (newline arg)
+    (indent-according-to-mode)))

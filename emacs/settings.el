@@ -2,7 +2,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Set the default TAB width.
-(setq c-basic-offset 2)
 (setq tab-width 2)
 
 ;; Store all file autosaves and backups in one directory.
