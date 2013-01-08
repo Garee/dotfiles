@@ -16,6 +16,10 @@
 ;; electric pair mode
 (electric-pair-mode)
 
+;; save place mode
+(require 'saveplace)
+(setq-default save-place t)
+
 ;; auto indent mode
 (require 'auto-indent-mode)
 (auto-indent-global-mode)

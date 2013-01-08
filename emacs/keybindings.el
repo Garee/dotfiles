@@ -5,6 +5,7 @@
 (global-set-key "\C-l" 'goto-line)
 (global-set-key "\C-cp" 'compile)
 (global-set-key "\C-i" 'indent-buffer)
+(global-set-key "\C-o" 'other-window)
 
 (global-set-key "\M-i" 'idomenu)
 (global-set-key "\M-o" 'occur)
@@ -14,5 +15,3 @@
 (global-set-key (kbd "RET") 'electric-return)
 
 (global-set-key [f11] 'toggle-fullscreen)
-
-
