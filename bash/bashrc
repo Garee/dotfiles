@@ -6,26 +6,15 @@ PS1='\w → '
 EDITOR='emacsclient -c'
 PATH=$PATH:$HOME/bin
 
-alias ls='ls++'
-alias rm='trash-put'
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
+alias packup='sudo apt-get update && sudo apt-get upgrade'
+alias packrm='sudo apt-get autoremove --purge'
+alias packin='sudo apt-get install'
+alias packar='sudo apt-add-repository'
+alias packarm='sudo apt-add-repository --remove'
+alias packs='apt-cache search'
 
 alias e='emacsclient -c'
 alias et='emacsclient -t'
 alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit"
-
-alias packup='sudo pacman -Syu'
-alias packdb='sudo pacman -Syy'
-alias packin='sudo pacman -S'
-alias packrm='sudo pacman -Rns'
-alias packs='pacman -Ss'
-alias packers='packer -Ss'
-alias packerin='sudo -E packer -S'
-
-
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
