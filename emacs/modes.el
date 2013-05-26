@@ -53,7 +53,7 @@
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-		  (ruby-mode "<%==\\|<%=\\|<%#\\|<%" "%>")
+                  (ruby-mode "<%==\\|<%=\\|<%#\\|<%" "%>")
                   (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
 (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5" "erb"))
@@ -65,7 +65,7 @@
 ;; Switch to c-mode when working on an OpenCL kernel buffer.
 (add-to-list 'auto-mode-alist '("\\.cl$" . c-mode))
 
-;; haskell-mode 
+;; haskell-mode
 (load "haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
@@ -78,3 +78,15 @@
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+
+;; IRC
+(setq erc-autojoin-channels-alist
+      '(("freenode.net" "#startups" "#learnprogramming")
+        ("mozilla.org" "#introduction")))
+
+;; Don't notify status messages
+(erc-track-mode t)
+(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"))
+(setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
+
+

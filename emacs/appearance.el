@@ -40,10 +40,13 @@
 	      (list
 	       " "
 	       '(:eval (propertize "%b " 'face 'font-lock-keyword-face))
-	       "%02l [%m] ["
-	       '(:eval (if overwrite-mode "Ovr" "Ins"))
+	       "%02l [%m]"
+               '(:eval (if (equal erc-modified-channels-object "") " " ""))
+               '(t erc-modified-channels-object)
+	       "["
+               '(:eval (if overwrite-mode "Ovr" "Ins"))
 	       '(:eval (when (buffer-modified-p) (concat ":Mod")))
 	       '(:eval (when buffer-read-only (concat ":RO")))
 	       "] ["
 	       '(:eval (format-time-string "%H:%M"))
-	       "]%M%-"))
+	       "] %-"))
