@@ -6,6 +6,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/js2")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/multi-web-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/haskell-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/python-mode")
 
 ;; Enable ido-mode for opening buffers.
 (ido-mode)
@@ -78,6 +79,9 @@
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+
+;; python mode
+(require 'python)
 
 ;; IRC
 (setq erc-autojoin-channels-alist
