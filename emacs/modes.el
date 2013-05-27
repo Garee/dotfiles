@@ -84,11 +84,6 @@
 (require 'python)
 
 ;; IRC
-(setq erc-autojoin-channels-alist
-      '(("freenode.net" "#startups" "#learnprogramming")
-        ("mozilla.org" "#introduction")))
-
-;; Don't notify status messages
 (erc-track-mode t)
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"))
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
