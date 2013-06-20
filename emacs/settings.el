@@ -7,6 +7,10 @@
 ;; Store all file autosaves and backups in one directory.
 (setq backup-directory-alist `(("." . "~/.backups")))
 
+;; Store auto-save files in the backup directory.
+(defvar auto-save-folder "~/.backups/auto-save")
+(setq auto-save-file-name-transforms `((".*" ,auto-save-folder t)))
+
 ;; Disable auto-save #files#.
 (setq auto-save-default nil)
 

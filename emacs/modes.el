@@ -1,7 +1,6 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-indent-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/imenu")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/yasnippet")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auctex")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/js2")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/multi-web-mode")
@@ -31,11 +30,6 @@
 
 ;; iedit mode
 (require 'iedit)
-
-;; yasnippet mode
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas/prompt-functions '(yas/dropdown-prompt))
 
 ;; auctex mode
 (load "auctex.el" nil t t)
@@ -80,6 +74,11 @@
 (add-to-list 'auto-mode-alist '("\\Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 
+;; Set default TAB functionality in makefile-mode
+(add-hook 'makefile-mode-hook
+          (lambda ()
+            (define-key makefile-mode-map [tab] 'indent-for-tab-command)))
+
 ;; python mode
 (require 'python)
 
@@ -87,5 +86,3 @@
 (erc-track-mode t)
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"))
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
-
-
