@@ -6,6 +6,9 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/multi-web-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/haskell-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/python-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/dash")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/s")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/virtualenvwrapper")
 
 ;; Enable ido-mode for opening buffers.
 (ido-mode)
@@ -86,3 +89,8 @@
 (erc-track-mode t)
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"))
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
+
+;; virtualenvwrapper
+(require 'virtualenvwrapper)
+(venv-initialize-eshell)
+(setq venv-location "/home/gary/.virtualenvs")

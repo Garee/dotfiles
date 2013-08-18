@@ -33,7 +33,7 @@
 (defun c-c++-header ()
   "Sets the the appropriate mode for a header file."
   (interactive)
-  (let ((c-file (concat (substring (buffer-file-name) 0 -1) "c")))
+  (let ((c-file (concat (substring (buffer-file-name ) 0 -1) "c")))
     (if (file-exists-p c-file)
 	(c-mode)
       (c++-mode))))
