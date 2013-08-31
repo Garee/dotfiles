@@ -83,7 +83,9 @@
             (define-key makefile-mode-map [tab] 'indent-for-tab-command)))
 
 ;; python mode
-(require 'python)
+(setq py-install-directory "~/.dotfiles/emacs/packages/python-mode")
+(add-to-list 'load-path py-install-directory)
+(require 'python-mode)
 
 ;; IRC
 (erc-track-mode t)

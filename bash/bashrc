@@ -17,8 +17,6 @@ alias e='emacsclient -c'
 alias et='emacsclient -t'
 alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
 # virtualenvwrapper configuration.
 WORKON_HOME=/home/gary/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
