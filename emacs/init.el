@@ -3,9 +3,6 @@
 (load "~/.dotfiles/emacs/keybindings.el")
 (load "~/.dotfiles/emacs/modes.el")
 (load "~/.dotfiles/emacs/appearance.el")
-
-(if window-system
-    (eshell))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -9,6 +9,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/dash")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/s")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/virtualenvwrapper")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 
 ;; Enable ido-mode for opening buffers.
 (ido-mode)
@@ -96,3 +97,7 @@
 (require 'virtualenvwrapper)
 (venv-initialize-eshell)
 (setq venv-location "/home/gary/.virtualenvs")
+
+;; smex
+(require 'smex)
+(smex-initialize)
