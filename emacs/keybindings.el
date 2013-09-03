@@ -1,4 +1,5 @@
 (global-set-key "\C-x\C-m" 'smex)
+(global-set-key "\C-xm" 'smex)
 (global-set-key "\M-x" 'smex-major-mode-commands)
 (global-set-key "\C-x\C-b" 'ibuffer)
 (global-set-key "\C-u" 'undo)
@@ -11,6 +12,7 @@
 (global-set-key "\M-o" 'occur)
 (global-set-key "\M-/" 'hippie-expand)
 (global-set-key "\M-;" 'iedit-mode-on-function)
+(global-set-key "\M-r" 'replace-string)
 
 (global-set-key (kbd "RET") 'electric-return)
 

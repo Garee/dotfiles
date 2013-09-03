@@ -34,3 +34,6 @@
 
 ;; Replace text with inserted while mark is active.
 (delete-selection-mode 1)
+
+;; Disallow creation of newlines at end of buffer.
+(setq next-line-add-newlines nil)
