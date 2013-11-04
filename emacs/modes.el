@@ -5,50 +5,70 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/js2")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/multi-web-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/haskell-mode")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/python-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/dash")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/s")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/virtualenvwrapper")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/virtualenvwrapper")
 
-;; Enable ido-mode for opening buffers.
-(ido-mode)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(autoload 'idomenu "idomenu" nil t)
-
-;; electric pair mode
+;; Automatically close brackets.
 (electric-pair-mode)
 
-;; save place mode
+;; Return to last visited place in a file.
 (require 'saveplace)
 (setq-default save-place t)
-
-;; auto indent mode
-(require 'auto-indent-mode)
-(auto-indent-global-mode)
 
 ;; Display the directory if two buffers have the same name.
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;; iedit mode
+;; Choose the correct mode for header files.
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
+
+;; Switch to c-mode when working on an OpenCL kernel buffer.
+(add-to-list 'auto-mode-alist '("\\.cl$" . c-mode))
+
+
+;; Set default TAB functionality in makefile-mode
+(add-hook 'makefile-mode-hook
+          (lambda ()
+            (define-key makefile-mode-map [tab] 'indent-for-tab-command)))
+
+;; IRC configuration.
+(erc-track-mode t)
+(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"))
+(setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
+
+;; Display file/directory names in the buffer list.
+(ido-mode)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(autoload 'idomenu "idomenu" nil t)
+
+;; Display M-x commands in the buffer list like ido-mode.
+(require 'smex)
+(smex-initialize)
+
+;; Automatically indent code
+(require 'auto-indent-mode)
+(auto-indent-global-mode)
+
+;; Edit multiple occurences of the same string at the same time.
 (require 'iedit)
 
-;; auctex mode
+;; LaTeX major mode.
 (load "auctex.el" nil t t)
 
-;; org mode
+;; Mode for note taking.
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-startup-indented t)
 
-;; js2 mode
+;; JavaScript major mode.
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (setq js2-basic-offset 2)
 
-;; multi-web mode
+;; Dynamically switch major mode in the same file depending on the current point location.
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
@@ -58,46 +78,21 @@
 (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5" "erb"))
 (multi-web-global-mode 1)
 
-;; Choose the correct mode for header files.
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
-
-;; Switch to c-mode when working on an OpenCL kernel buffer.
-(add-to-list 'auto-mode-alist '("\\.cl$" . c-mode))
-
-;; haskell-mode
+;; Haskell major mode.
 (load "haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
-;; css mode
+;; CSS major mode.
 (setq css-indent-offset 2)
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 
-;; ruby mode
+;; Ruby major mode.
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 
-;; Set default TAB functionality in makefile-mode
-(add-hook 'makefile-mode-hook
-          (lambda ()
-            (define-key makefile-mode-map [tab] 'indent-for-tab-command)))
-
-;; python mode
-(setq py-install-directory "~/.dotfiles/emacs/packages/python-mode")
-(add-to-list 'load-path py-install-directory)
-(require 'python-mode)
-
-;; IRC
-(erc-track-mode t)
-(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"))
-(setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
-
-;; virtualenvwrapper
+;; virtualenvwrapper mode.
 (require 'virtualenvwrapper)
 (venv-initialize-eshell)
 (setq venv-location "/home/gary/.virtualenvs")
-
-;; smex
-(require 'smex)
-(smex-initialize)

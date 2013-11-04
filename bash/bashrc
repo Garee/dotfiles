@@ -5,6 +5,7 @@ source ~/.dotfiles/bash/bashfunc
 PS1='\w → '
 EDITOR='emacsclient -c'
 PATH=$PATH:$HOME/bin
+PATH=$PATH:~/opt/android/tools
 
 alias packup='sudo apt-get update && sudo apt-get upgrade'
 alias packrm='sudo apt-get autoremove --purge'

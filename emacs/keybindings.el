@@ -6,7 +6,6 @@
 (global-set-key "\C-l" 'goto-line)
 (global-set-key "\C-i" 'indent-buffer)
 (global-set-key "\C-o" 'other-window)
-(global-set-key "\C-c" 'comment-dwim)
 
 (global-set-key "\M-i" 'idomenu)
 (global-set-key "\M-o" 'occur)
