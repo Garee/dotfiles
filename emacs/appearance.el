@@ -17,7 +17,6 @@
 (setq default-cursor-type 'hbar)
 
 ;; Set the default font and ensure it works across frames.
-;;(set-default-font "Dejavu Sans Mono-10")
 (set-default-font "Dejavu Sans Mono-10")
 (setq default-frame-alist 
       '((font . "Dejavu Sans Mono-10")

@@ -1,6 +1,9 @@
 ;; Replace yes/no with y/n.
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Use spaces instead of tabs.
+(setq-default indent-tabs-mode nil)
+
 ;; Set the default TAB width.
 (setq tab-width 2)
 

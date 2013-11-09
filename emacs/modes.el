@@ -24,24 +24,16 @@
 ;; Choose the correct mode for header files.
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
 
-;; Switch to c-mode when working on an OpenCL kernel buffer.
-(add-to-list 'auto-mode-alist '("\\.cl$" . c-mode))
-
-
 ;; Set default TAB functionality in makefile-mode
 (add-hook 'makefile-mode-hook
           (lambda ()
             (define-key makefile-mode-map [tab] 'indent-for-tab-command)))
 
-;; IRC configuration.
-(erc-track-mode t)
-(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"))
-(setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
-
 ;; Display file/directory names in the buffer list.
 (ido-mode)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
+(setq ido-ignore-buffers '("^\*Messages\*"))
 (autoload 'idomenu "idomenu" nil t)
 
 ;; Display M-x commands in the buffer list like ido-mode.
@@ -60,7 +52,6 @@
 
 ;; Mode for note taking.
 (require 'org-install)
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-startup-indented t)
 
 ;; JavaScript major mode.
@@ -91,6 +82,12 @@
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+
+;; Python mode
+(add-hook 'python-mode-hook
+          (function (lambda ()
+                      (setq indent-tabs-mode nil
+                            tab-width 4))))
 
 ;; virtualenvwrapper mode.
 (require 'virtualenvwrapper)
