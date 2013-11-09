@@ -1,4 +1,5 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-indent-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/imenu")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auctex")
@@ -75,6 +76,8 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;; CSS major mode.
+(require 'rainbow-mode)
+(add-hook 'css-mode-hook 'rainbow-mode)
 (setq css-indent-offset 2)
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 
