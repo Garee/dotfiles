@@ -125,10 +125,11 @@
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 
 ;; Python mode
+(setq python-indent-guess-indent-offset nil)
 (add-hook 'python-mode-hook
-          (function (lambda ()
-                      (setq indent-tabs-mode nil
-                            tab-width 4))))
+          (lambda ()
+            (setq python-indent 4)
+            (setq python-indent-offset 4)))
 
 (global-set-key "\C-x\C-b" 'ibuffer)
 (global-set-key "\C-u" 'undo)
