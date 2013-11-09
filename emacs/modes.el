@@ -84,10 +84,11 @@
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 
 ;; Python mode
+(setq python-indent-guess-indent-offset nil)
 (add-hook 'python-mode-hook
-          (function (lambda ()
-                      (setq indent-tabs-mode nil
-                            tab-width 4))))
+          (lambda ()
+            (setq python-indent 4)
+            (setq python-indent-offset 4)))
 
 ;; virtualenvwrapper mode.
 (require 'virtualenvwrapper)
