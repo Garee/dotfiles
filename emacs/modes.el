@@ -34,7 +34,6 @@
 (ido-mode)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
-(setq ido-ignore-buffers '("^\*Messages\*"))
 (autoload 'idomenu "idomenu" nil t)
 
 ;; Display M-x commands in the buffer list like ido-mode.

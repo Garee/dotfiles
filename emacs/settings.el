@@ -40,3 +40,4 @@
 
 ;; Disallow creation of newlines at end of buffer.
 (setq next-line-add-newlines nil)
+(setq mode-require-final-newline nil)
