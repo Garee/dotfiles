@@ -3,15 +3,8 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/dash")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/s")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/virtualenvwrapper")
-
-;; Setup package sources.
-(require 'package)
-(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; Automatically close parenthesis.
 (electric-pair-mode)
