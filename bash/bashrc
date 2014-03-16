@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ~/.dotfiles/bash/bashfunc
+source ~/.passwords
 
 PS1='\w → '
 EDITOR='emacsclient -c'

@@ -28,6 +28,7 @@
 
 ;; Remove trailing whitespace.
 (setq delete-trailing-whitespace t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Allow free use of the narrow commands.
 (put 'narrow-to-region 'disabled nil)
