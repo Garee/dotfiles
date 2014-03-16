@@ -42,3 +42,6 @@
 ;; Disallow creation of newlines at end of buffer.
 (setq next-line-add-newlines nil)
 (setq mode-require-final-newline nil)
+
+;; Run the garbage collector at 10mb (default is 0.7mb)
+(setq gc-cons-threshold (* 10 1024 1024))

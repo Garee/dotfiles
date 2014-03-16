@@ -8,7 +8,7 @@
 (scroll-bar-mode 0)
 (fringe-mode 0)
 
-;; Parenthesis matching 
+;; Parenthesis matching
 (show-paren-mode t)
 (setq show-paren-delay 0)
 (setq show-paren-style 'mixed)
@@ -17,8 +17,7 @@
 (setq default-cursor-type 'hbar)
 
 ;; Set the default font and ensure it works across frames.
-(set-default-font "Dejavu Sans Mono-10")
-(setq default-frame-alist 
+(setq default-frame-alist
       '((font . "Dejavu Sans Mono-10")
 	(vertical-scroll-bars)
 	(tool-bar-lines . 0)
