@@ -1,3 +1,4 @@
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-complete")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-indent-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
@@ -6,6 +7,11 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/s")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/virtualenvwrapper")
+
+;; Setup package sources.
+(require 'package)
+(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; Automatically close parenthesis.
 (electric-pair-mode)
@@ -30,6 +36,16 @@
 ;; Display M-x commands in the buffer list like ido-mode.
 (require 'smex)
 (smex-initialize)
+
+;; Auto completion.
+(require 'auto-complete)
+(add-to-list 'ac-dictionary-directories "~/.dotfiles/emacs/packages/auto-complete/dict")
+
+(require 'auto-complete-config)
+(global-auto-complete-mode t)
+(setq ac-use-menu-map t)
+(define-key ac-menu-map "\C-n" 'ac-next)
+(define-key ac-menu-map "\C-p" 'ac-previous)
 
 ;; Automatically indent code.
 (require 'auto-indent-mode)
