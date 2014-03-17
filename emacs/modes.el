@@ -5,9 +5,16 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/virtualenvwrapper")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-delimiters")
 
 ;; Automatically close parenthesis.
 (electric-pair-mode)
+
+;; Colourful parenthesis in scheme/lisp.
+(require 'rainbow-delimiters)
+(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 
 ;; Return to the last visited place in a file.
 (require 'saveplace)
