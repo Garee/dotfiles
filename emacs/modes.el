@@ -17,6 +17,11 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
+;; Highlight lines that go over an 80 column limit.
+(add-hook 'prog-mode-hook 'whitespace-mode)
+(setq whitespace-line-column 80)
+(setq whitespace-style '(face lines-tail))
+
 ;; Display file/directory names in the buffer list.
 (ido-mode)
 (setq ido-enable-flex-matching t)
@@ -68,10 +73,8 @@
 
 ;; Python mode
 (setq python-indent-guess-indent-offset nil)
-(add-hook 'python-mode-hook
-          (lambda ()
-            (setq python-indent 4)
-            (setq python-indent-offset 4)))
+(setq python-indent 4)
+(setq python-indent-offset 4)
 
 ;; virtualenvwrapper mode.
 (require 'virtualenvwrapper)
