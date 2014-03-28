@@ -79,9 +79,11 @@
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 
 ;; Python mode
-(setq python-indent-guess-indent-offset nil)
-(setq python-indent 4)
-(setq python-indent-offset 4)
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (setq python-indent-guess-indent-offset nil)
+             (setq python-indent 4)
+             (setq python-indent-offset 4)))
 
 ;; virtualenvwrapper mode.
 (require 'virtualenvwrapper)
