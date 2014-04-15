@@ -8,7 +8,9 @@
 [alias]
 	co = checkout
 	a = add
+        aa = add --all
 	c = commit
 	s = status
 	b = branch
 	l = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+        pom = push origin master
