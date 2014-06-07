@@ -1,22 +1,14 @@
 #!/bin/bash
 
 source ~/.dotfiles/bash/bashfunc
+source ~/.dotfiles/bash/bashalias
 source ~/.passwords
 
 PS1='\w → '
 EDITOR='emacsclient -c'
+TERM=xterm-256color
+
 PATH=$PATH:$HOME/bin
-
-alias packup='sudo apt-get update && sudo apt-get upgrade'
-alias packrm='sudo apt-get autoremove --purge'
-alias packin='sudo apt-get install'
-alias packar='sudo apt-add-repository'
-alias packarm='sudo apt-add-repository --remove'
-alias packs='apt-cache search'
-
-alias e='emacsclient -c'
-alias et='emacsclient -t'
-alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit"
 
 # virtualenvwrapper configuration.
 WORKON_HOME=/home/gary/.virtualenvs
