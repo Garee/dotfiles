@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR=$(pwd)
+
+ln -s $DIR/bash/bashrc $HOME/.bashrc
+ln -s $DIR/emacs/init.el $HOME/.emacs
+ln -s $DIR/git/gitignore $HOME/.gitconfig
