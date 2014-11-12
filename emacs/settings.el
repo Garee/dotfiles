@@ -5,7 +5,8 @@
 (setq-default indent-tabs-mode nil)
 
 ;; Set the default TAB width.
-(setq tab-width 2)
+(setq-default tab-width 4)
+(setq tab-width 4)
 
 ;; Store all file autosaves and backups in one directory.
 (setq backup-directory-alist `(("." . "~/.backups")))

@@ -34,6 +34,7 @@
 (color-theme-initialize)
 (color-theme-solarized-dark)
 
+
 ;; Customise the mode line.
 (setq-default mode-line-format
 	      (list

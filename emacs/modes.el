@@ -6,6 +6,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/virtualenvwrapper")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-delimiters")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/arduino-mode")
 
 ;; Automatically close parenthesis.
 (electric-pair-mode)
@@ -75,7 +76,6 @@
 ;; CSS major mode.
 (require 'rainbow-mode)
 (add-hook 'css-mode-hook 'rainbow-mode)
-(setq css-indent-offset 2)
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 
 ;; Python mode
@@ -85,7 +85,13 @@
              (setq python-indent 4)
              (setq python-indent-offset 4)))
 
+(add-hook 'c-mode-hook
+	  '(lambda()
+	     (setq c-basic-offset 4)))
+
 ;; virtualenvwrapper mode.
 (require 'virtualenvwrapper)
 (venv-initialize-eshell)
 (setq venv-location "/home/gary/.virtualenvs")
+
+(require 'arduino-mode)
