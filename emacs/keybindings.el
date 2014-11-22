@@ -15,4 +15,3 @@
 (global-set-key "\M-r" 'replace-string)
 
 (global-set-key (kbd "RET") 'electric-return)
-(global-set-key [f11] 'toggle-fullscreen)
