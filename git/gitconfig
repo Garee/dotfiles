@@ -14,7 +14,3 @@
 	b = branch
         d = diff --color
 	l = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-        pom = push origin master
-        pod = push origin develop
-        pomf = push origin master --force
-        podf = push origin develop --force
