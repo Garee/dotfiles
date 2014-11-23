@@ -1,24 +1,8 @@
 #!/bin/bash
 
-source ~/.dotfiles/bash/bashfunc
 source ~/.dotfiles/bash/bashalias
-source ~/.passwords
 
 PS1='\w → '
 EDITOR='emacsclient -c'
 TERM=xterm-256color
-
-export GRADLE_HOME=/home/gary/bin/gradle-2.1
-
-PATH=$PATH:$GRADLE_HOME/bin
 PATH=$PATH:$HOME/bin
-
-# virtualenvwrapper configuration.
-WORKON_HOME=/home/gary/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-
-# Arduino.mk
-export ARDUINO_DIR=/usr/share/arduino
-export ARDMK_DIR=/home/gary/bin/arduino-makefile
-export AVR_TOOLS_DIR=/usr
-export ARDUINO_PORT=/dev/ttyACM0

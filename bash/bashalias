@@ -1,13 +1,4 @@
 alias ls='ls -Flho --color'
 alias grep='grep --color=auto'
-
-alias packup='sudo apt-get update && sudo apt-get upgrade'
-alias packrm='sudo apt-get autoremove --purge'
-alias packin='sudo apt-get install'
-alias packar='sudo apt-add-repository'
-alias packarm='sudo apt-add-repository --remove'
-alias packs='apt-cache search'
-
 alias e='emacsclient -c'
-alias et='emacsclient -t'
 alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit"
