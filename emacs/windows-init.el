@@ -7,16 +7,6 @@
 (add-to-list 'load-path "~/dotfiles/emacs/packages/rainbow-delimiters")
 (add-to-list 'load-path "~/dotfiles/emacs/packages/color-theme")
 
-(defun toggle-fullscreen (&optional f)
-  "Runs emacs in fullscreen with no window decoration."
-  (interactive)
-  (let ((current-value (frame-parameter nil 'fullscreen)))
-    (set-frame-parameter nil 'fullscreen
-			 (if (equal 'fullboth current-value)
-			     (if (boundp 'old-fullscreen) old-fullscreen nil)
-			   (progn (setq old-fullscreen current-value)
-				  'fullboth)))))
-
 (defun rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
@@ -211,7 +201,6 @@
 (global-set-key "\M-r" 'replace-string)
 
 (global-set-key (kbd "RET") 'electric-return)
-(global-set-key [f11] 'toggle-fullscreen)
 
 ;; Remove useless GUI components.
 (setq inhibit-startup-echo-area-message t)
