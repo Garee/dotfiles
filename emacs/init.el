@@ -68,6 +68,12 @@
 ;; Automatically close parenthesis.
 (electric-pair-mode)
 
+;; Use the emacs package manager
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 ;; Colourful parenthesis in scheme/lisp.
 (require 'rainbow-delimiters)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
@@ -156,11 +162,10 @@
 	(menu-bar-lines . 0)))
 
 ;; Set the theme.
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-solarized-dark)
+(load-theme 'spacegray t)
 
 ;; Customise the mode line.
+(custom-set-faces '(mode-line ((t (:family "Consolas")))))
 (setq-default mode-line-format
 	      (list
 	       " "
