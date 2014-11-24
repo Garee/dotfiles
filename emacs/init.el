@@ -1,9 +1,8 @@
-(add-to-list 'load-path "~/dotfiles/emacs/packages/ido-vertical-mode")
-(add-to-list 'load-path "~/dotfiles/emacs/packages/iedit")
-(add-to-list 'load-path "~/dotfiles/emacs/packages/rainbow-delimiters")
-(add-to-list 'load-path "~/dotfiles/emacs/packages/rainbow-mode")
-(add-to-list 'load-path "~/dotfiles/emacs/packages/smex")
-(add-to-list 'load-path "~/dotfiles/emacs/packages/color-theme")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-delimiters")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 
 (defun c-c++-header ()
   "Sets the the appropriate mode for a header file."
@@ -162,6 +161,7 @@
 	(menu-bar-lines . 0)))
 
 ;; Set the theme.
+(add-to-list 'custom-theme-load-path "~/.dotfiles/emacs/themes")
 (load-theme 'spacegray t)
 
 ;; Customise the mode line.
