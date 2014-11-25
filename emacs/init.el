@@ -4,21 +4,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 
-(defun c-c++-header ()
-  "Sets the the appropriate mode for a header file."
-  (interactive)
-  (let ((c-file (concat (substring (buffer-file-name ) 0 -1) "c")))
-    (if (file-exists-p c-file)
-	(c-mode)
-      (c++-mode))))
-
-(defun indent-buffer ()
-  "Indent the whole buffer."
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
-
+;; Start in the home directory.
 (setq default-directory "~")
 
 ;; Replace yes/no with y/n.
@@ -33,10 +19,6 @@
 
 ;; Store all file autosaves and backups in one directory.
 (setq backup-directory-alist `(("." . "~/.backups")))
-
-;; Store auto-save files in the backup directory.
-(defvar auto-save-folder "~/.backups/auto-save")
-(setq auto-save-file-name-transforms `((".*" ,auto-save-folder t)))
 
 ;; Disable auto-save #files#.
 (setq auto-save-default nil)
@@ -98,6 +80,7 @@
 (setq ido-everywhere t)
 (autoload 'idomenu "idomenu" nil t)
 
+;; Display file choices vertically.
 (require' ido-vertical-mode)
 (ido-vertical-mode)
 
@@ -113,11 +96,27 @@
 (setq org-startup-indented t)
 
 ;; Choose the correct mode for header files.
+(defun c-c++-header ()
+  "Sets the the appropriate mode for a header file."
+  (interactive)
+  (let ((c-file (concat (substring (buffer-file-name ) 0 -1) "c")))
+    (if (file-exists-p c-file)
+	(c-mode)
+      (c++-mode))))
+
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
 
 ;; CSS major mode.
 (require 'rainbow-mode)
 (add-hook 'css-mode-hook 'rainbow-mode)
+
+;; Custom Keybindings.
+(defun indent-buffer ()
+  "Indent the whole buffer."
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
 
 (global-set-key "\C-x\C-m" 'smex)
 (global-set-key "\C-xm" 'smex)
@@ -126,14 +125,11 @@
 (global-set-key "\C-l" 'goto-line)
 (global-set-key "\C-xi" 'indent-buffer)
 (global-set-key "\C-o" 'other-window)
-(global-set-key (kbd "C-/") 'comment-dwim)
 
-(global-set-key "\M-x" 'smex-major-mode-commands)
-(global-set-key "\M-i" 'idomenu)
+(global-set-key "\M-x" 'smex)
 (global-set-key "\M-o" 'occur)
 (global-set-key "\M-/" 'hippie-expand)
 (global-set-key "\M-;" 'iedit-mode-on-function)
-(global-set-key "\M-r" 'replace-string)
 
 ;; Remove useless GUI components.
 (setq inhibit-startup-echo-area-message t)
@@ -143,7 +139,7 @@
 (scroll-bar-mode 0)
 (fringe-mode 0)
 
-;; Parenthesis matching
+;; Parenthesis matching.
 (show-paren-mode t)
 (setq show-paren-delay 0)
 (setq show-paren-style 'mixed)
@@ -151,7 +147,7 @@
 ;; Set the cursor type to a horizontal bar.
 (setq default-cursor-type 'hbar)
 
-;; Set the default font and ensure it works across frames.
+;; Set the default font.
 (setq default-frame-alist
       '((font . "Consolas-10")
 	(vertical-scroll-bars)
