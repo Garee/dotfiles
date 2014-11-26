@@ -2,6 +2,8 @@
 
 DIR=$(pwd)
 
+mkdir $HOME/bin
+
 rm $HOME/.bashrc
 rm $HOME/.emacs
 rm $HOME/.gitconfig
