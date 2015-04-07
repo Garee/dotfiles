@@ -2,12 +2,10 @@
 
 DIR=$(pwd)
 
-mkdir $HOME/bin
-
 rm $HOME/.bashrc
 rm $HOME/.emacs
 rm $HOME/.gitconfig
 
 ln -s $DIR/bash/bashrc $HOME/.bashrc
 ln -s $DIR/emacs/init.el $HOME/.emacs
-ln -s $DIR/git/gitignore $HOME/.gitconfig
+ln -s $DIR/git/gitconfig $HOME/.gitconfig
