@@ -1,4 +1,3 @@
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 
 ;; Start in the home directory.
@@ -56,10 +55,6 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (autoload 'idomenu "idomenu" nil t)
-
-;; Display file choices vertically.
-(require 'ido-vertical-mode)
-(ido-vertical-mode)
 
 ;; Display M-x commands in the buffer list like ido-mode.
 (require 'smex)
