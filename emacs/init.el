@@ -1,7 +1,4 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/iedit")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-delimiters")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/rainbow-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 
 ;; Start in the home directory.
@@ -46,21 +43,6 @@
 (setq next-line-add-newlines nil)
 (setq mode-require-final-newline nil)
 
-;; Automatically close parenthesis.
-(electric-pair-mode)
-
-;; Use the emacs package manager
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-;; Colourful parenthesis in scheme/lisp.
-(require 'rainbow-delimiters)
-(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-
 ;; Return to the last visited place in a file.
 (require 'saveplace)
 (setq-default save-place t)
@@ -69,11 +51,6 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;; Highlight lines that go over an 80 column limit.
-(add-hook 'prog-mode-hook 'whitespace-mode)
-(setq whitespace-line-column 80)
-(setq whitespace-style '(face lines-tail))
-
 ;; Display file/directory names in the buffer list.
 (ido-mode)
 (setq ido-enable-flex-matching t)
@@ -81,15 +58,12 @@
 (autoload 'idomenu "idomenu" nil t)
 
 ;; Display file choices vertically.
-(require' ido-vertical-mode)
+(require 'ido-vertical-mode)
 (ido-vertical-mode)
 
 ;; Display M-x commands in the buffer list like ido-mode.
 (require 'smex)
 (smex-initialize)
-
-;; Edit multiple occurences of the same string at the same time.
-(require 'iedit)
 
 ;; Mode for note taking.
 (require 'org-install)
@@ -105,10 +79,6 @@
       (c++-mode))))
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
-
-;; CSS major mode.
-(require 'rainbow-mode)
-(add-hook 'css-mode-hook 'rainbow-mode)
 
 ;; Custom Keybindings.
 (defun indent-buffer ()
@@ -129,7 +99,6 @@
 (global-set-key "\M-x" 'smex)
 (global-set-key "\M-o" 'occur)
 (global-set-key "\M-/" 'hippie-expand)
-(global-set-key "\M-;" 'iedit-mode-on-function)
 
 ;; Remove useless GUI components.
 (setq inhibit-startup-echo-area-message t)
@@ -155,10 +124,6 @@
 	(left-fringe . 0)
 	(right-fringe . 0)
 	(menu-bar-lines . 0)))
-
-;; Set the theme.
-(add-to-list 'custom-theme-load-path "~/.dotfiles/emacs/themes")
-(load-theme 'spacegray t)
 
 ;; Customise the mode line.
 (custom-set-faces '(mode-line ((t (:family "Consolas")))))

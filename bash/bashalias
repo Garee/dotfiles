@@ -1,4 +1,11 @@
-alias ls='ls -Flho --color'
+#!/bin/bash
+
 alias grep='grep --color=auto'
+alias ls='ls -Flho --color=always'
+alias tree='tree -C'
+alias less='less -r'
+alias vi='vim'
 alias e='emacsclient -c'
-alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit"
+alias E="SUDO_EDITOR='emacsclient -c -a emacs' sudoedit"
+alias python='python3'
+alias bashreload='source $HOME/.bashrc'
