@@ -1,3 +1,4 @@
+;; Load any third-party libraries.
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 
 ;; Start in the home directory.
@@ -121,7 +122,7 @@
               (list
                " "
                '(:eval (propertize "%b" 'face 'font-lock-keyword-face))
-               " %02l [%m]"
+               " %l [%m] "
                '(:eval (if (equal erc-modified-channels-object "") " " ""))
                '(t erc-modified-channels-object)
                "["
