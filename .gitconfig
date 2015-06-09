@@ -1,0 +1,10 @@
+[user]
+	name = Gary Blackwood
+	email = gareeblackwood@gmail.com
+[core]
+	editor = emacs
+[color]
+	ui = true
+[alias]
+        diff = diff --color
+	log = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short

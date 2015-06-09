@@ -42,6 +42,9 @@
 (setq next-line-add-newlines nil)
 (setq mode-require-final-newline nil)
 
+;; Match parenthesis.
+(electric-pair-mode 1)
+
 ;; Return to the last visited place in a file.
 (require 'saveplace)
 (setq-default save-place t)
@@ -64,18 +67,6 @@
 (require 'org-install)
 (setq org-startup-indented t)
 
-;; Choose the correct mode for header files.
-(defun c-c++-header ()
-  "Sets the the appropriate mode for a header file."
-  (interactive)
-  (let ((c-file (concat (substring (buffer-file-name ) 0 -1) "c")))
-    (if (file-exists-p c-file)
-	(c-mode)
-      (c++-mode))))
-
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
-
-;; Custom Keybindings.
 (defun indent-buffer ()
   "Indent the whole buffer."
   (interactive)
@@ -83,16 +74,14 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
+;; Custom Keybindings.
 (global-set-key "\C-x\C-m" 'smex)
 (global-set-key "\C-xm" 'smex)
-(global-set-key "\C-x\C-b" 'ibuffer)
+(global-set-key "\C-o" 'other-window)
 (global-set-key "\C-u" 'undo)
 (global-set-key "\C-l" 'goto-line)
 (global-set-key "\C-xi" 'indent-buffer)
-(global-set-key "\C-o" 'other-window)
-
-(global-set-key "\M-x" 'smex)
-(global-set-key "\M-o" 'occur)
+(global-set-key "\C-x\C-b" 'ibuffer)
 (global-set-key "\M-/" 'hippie-expand)
 
 ;; Remove useless GUI components.
@@ -113,26 +102,32 @@
 
 ;; Set the default font.
 (setq default-frame-alist
-      '((font . "Consolas-10")
-	(vertical-scroll-bars)
-	(tool-bar-lines . 0)
-	(left-fringe . 0)
-	(right-fringe . 0)
-	(menu-bar-lines . 0)))
+      '((font . "Monaco-14")
+        (vertical-scroll-bars)
+        (tool-bar-lines . 0)
+        (left-fringe . 0)
+        (right-fringe . 0)
+        (menu-bar-lines . 0)))
+
+;; Set the theme.
+(if window-system
+    (progn
+        (add-to-list 'custom-theme-load-path "~/.dotfiles/emacs/themes")
+        (load-theme 'spacegray t)))
 
 ;; Customise the mode line.
-(custom-set-faces '(mode-line ((t (:family "Consolas")))))
+(custom-set-faces '(mode-line ((t (:family "Monaco")))))
 (setq-default mode-line-format
-	      (list
-	       " "
-	       '(:eval (propertize "%b " 'face 'font-lock-keyword-face))
-	       "%02l [%m]"
+              (list
+               " "
+               '(:eval (propertize "%b" 'face 'font-lock-keyword-face))
+               " %02l [%m]"
                '(:eval (if (equal erc-modified-channels-object "") " " ""))
                '(t erc-modified-channels-object)
-	       "["
+               "["
                '(:eval (if overwrite-mode "Ovr" "Ins"))
-	       '(:eval (when (buffer-modified-p) (concat ":Mod")))
-	       '(:eval (when buffer-read-only (concat ":RO")))
-	       "] ["
-	       '(:eval (format-time-string "%H:%M"))
-	       "] %-"))
+               '(:eval (when (buffer-modified-p) (concat ":Mod")))
+               '(:eval (when buffer-read-only (concat ":RO")))
+               "] ["
+               '(:eval (format-time-string "%H:%M"))
+               "] %-"))
