@@ -85,6 +85,10 @@
 (global-set-key "\C-x\C-b" 'ibuffer)
 (global-set-key "\M-/" 'hippie-expand)
 
+;; Use cmd as meta rather than alt on mac.
+(setq mac-option-modifier 'super)
+(setq mac-command-modifier 'meta)
+
 ;; Remove useless GUI components.
 (setq inhibit-startup-echo-area-message t)
 (setq inhibit-startup-message t)
