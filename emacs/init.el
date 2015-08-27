@@ -1,5 +1,6 @@
 ;; Load any third-party libraries.
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
 
 ;; Start in the home directory.
 (setq default-directory "~")
@@ -60,6 +61,10 @@
 (setq ido-everywhere t)
 (autoload 'idomenu "idomenu" nil t)
 
+;; Display ido mode vertically.
+(require 'ido-vertical-mode)
+(ido-vertical-mode)
+
 ;; Display M-x commands in the buffer list like ido-mode.
 (require 'smex)
 (smex-initialize)
@@ -86,7 +91,6 @@
 (global-set-key "\M-/" 'hippie-expand)
 
 ;; Use cmd as meta rather than alt on mac.
-(setq mac-option-modifier 'super)
 (setq mac-command-modifier 'meta)
 
 ;; Remove useless GUI components.
