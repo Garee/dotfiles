@@ -1,6 +1,7 @@
 ;; Load any third-party libraries.
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/markdown-mode")
 
 ;; Start in the home directory.
 (setq default-directory "~")
@@ -69,6 +70,10 @@
 (require 'smex)
 (smex-initialize)
 
+;; Use markdown-mode for .md files.
+(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 ;; Mode for note taking.
 (require 'org-install)
 (setq org-startup-indented t)
@@ -125,7 +130,12 @@
         (load-theme 'spacegray t)))
 
 ;; Customise the mode line.
-(custom-set-faces '(mode-line ((t (:family "Monaco")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(mode-line ((t (:family "Monaco")))))
 (setq-default mode-line-format
               (list
                " "
