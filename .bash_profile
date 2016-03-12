@@ -1,16 +1,21 @@
 #!/bin/bash
 
-source /usr/local/bin/virtualenvwrapper.sh
+# To allow use of the virtualenvwrapper script.
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
 
-export TODOIST_HOME=$HOME/dev/todoist
+# Put global npm packages on our path.
+if [ -d /Users/gary/.npm/bin ]; then
+    export PATH=$PATH:'/Users/gary/.npm/bin'
+fi
 
+# Aliases
 alias grep='grep --color=auto'
 alias ls='ls -lFho'
-alias tree='tree -C'
-alias less='less -r'
 alias vi='vim'
 alias e='emacs'
-alias reload='source $HOME/.bashrc'
+alias reload='source $HOME/.bash_profile'
 
 # Get the current branch in the git repository.
 function parse_git_branch() {
@@ -20,4 +25,5 @@ function parse_git_branch() {
     fi
 }
 
+# Set the look of the command line prompt.
 export PS1="\n[\d \A] [\u@\h] \w \`parse_git_branch\` \n$ "
