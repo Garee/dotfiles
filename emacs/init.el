@@ -78,20 +78,11 @@
 (require 'org-install)
 (setq org-startup-indented t)
 
-(defun indent-buffer ()
-  "Indent the whole buffer."
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
-
 ;; Custom Keybindings.
 (global-set-key "\C-x\C-m" 'smex)
-(global-set-key "\C-xm" 'smex)
 (global-set-key "\C-o" 'other-window)
 (global-set-key "\C-u" 'undo)
 (global-set-key "\C-l" 'goto-line)
-(global-set-key "\C-xi" 'indent-buffer)
 (global-set-key "\C-x\C-b" 'ibuffer)
 (global-set-key "\M-/" 'hippie-expand)
 
