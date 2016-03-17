@@ -2,6 +2,12 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/markdown-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/exec-path-from-shell")
+
+;; Configure package sources.
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
 
 ;; Start in the home directory.
 (setq default-directory "~")
@@ -77,6 +83,24 @@
 ;; Mode for note taking.
 (require 'org-install)
 (setq org-startup-indented t)
+(setq org-src-fontify-natively t)
+(setq org-html-postamble nil)
+(setq org-html-htmlize-output-type 'css)
+
+(defun org-html-publish-dir()
+  "Publish all org files in a directory"
+  (interactive)
+  (save-excursion
+    (mapc
+     (lambda (file)
+       (with-current-buffer
+       (find-file-noselect file)
+     (org-html-export-to-html)))
+       (file-expand-wildcards  "*.org"))))
+
+;; Ensure environment variables are present within Emacs shell.
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
 
 ;; Custom Keybindings.
 (global-set-key "\C-x\C-m" 'smex)
