@@ -3,6 +3,9 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/markdown-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/exec-path-from-shell")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/js2-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/web-mode")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-complete")
 
 ;; Configure package sources.
 (require 'package)
@@ -20,7 +23,7 @@
 
 ;; Set the default TAB width.
 (setq tab-width 4)
-(setq c-basic-offset 4)
+(defvar c-basic-offset 4)
 
 ;; Store all file autosaves and backups in one directory.
 (setq backup-directory-alist `(("." . "~/.backups")))
@@ -37,8 +40,8 @@
 ;; Don't display message in scratch buffer.
 (setq initial-scratch-message nil)
 
-;; Remove trailing whitespace.
-(setq delete-trailing-whitespace t)
+;; Remove trailing whitespace on save.
+(defvar delete-trailing-whitespace t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Always line wrap.
@@ -64,8 +67,8 @@
 
 ;; Display file/directory names in the buffer list.
 (ido-mode)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
+(defvar ido-enable-flex-matching t)
+(defvar ido-everywhere t)
 (autoload 'idomenu "idomenu" nil t)
 
 ;; Display ido mode vertically.
@@ -101,6 +104,25 @@
 ;; Ensure environment variables are present within Emacs shell.
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
+
+;; Web dev mode for HTML templates.
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+
+;; JavaScript mode.
+(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
+
+;; package-install auto-complete
+(ac-config-default)
+
+;; package-install flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(with-eval-after-load 'flycheck
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
 ;; Custom Keybindings.
 (global-set-key "\C-x\C-m" 'smex)
@@ -146,10 +168,6 @@
 
 ;; Customise the mode line.
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(mode-line ((t (:family "Monaco")))))
 (setq-default mode-line-format
               (list
