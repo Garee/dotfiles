@@ -7,6 +7,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/web-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-complete")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/yasnippet")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/ace-jump-mode")
 
 ;; Configure package sources.
 (require 'package)
@@ -121,6 +122,10 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+;; Jump to position quickly.
+(require 'ace-jump-mode)
+(autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; package-install auto-complete
 (ac-config-default)
