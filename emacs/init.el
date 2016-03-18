@@ -6,6 +6,7 @@
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/js2-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/web-mode")
 (add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-complete")
+(add-to-list 'load-path "~/.dotfiles/emacs/packages/yasnippet")
 
 ;; Configure package sources.
 (require 'package)
@@ -115,6 +116,11 @@
 ;; JavaScript mode.
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
+
+;; Snippets
+(require 'yasnippet)
+(yas-global-mode 1)
+
 
 ;; package-install auto-complete
 (ac-config-default)
