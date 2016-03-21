@@ -136,6 +136,15 @@
          "* TODO %?\n  %i\n  %a")))
 (global-set-key (kbd "C-c c") 'org-capture)
 
+; JavaScript
+(add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
+
+; HTML
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+; Python
+(add-hook 'python-mode-hook 'anaconda-mode)
+
 ; Remove useless GUI components.
 (setq inhibit-startup-echo-area-message t)
 (setq inhibit-startup-message t)
