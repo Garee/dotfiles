@@ -1,152 +1,142 @@
-;; Load any third-party libraries.
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/smex")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/ido-vertical-mode")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/markdown-mode")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/exec-path-from-shell")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/js2-mode")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/web-mode")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/auto-complete")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/yasnippet")
-(add-to-list 'load-path "~/.dotfiles/emacs/packages/ace-jump-mode")
-
-;; Configure package sources.
+;Configure package sources.
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
-;; Start in the home directory.
-(setq default-directory "~")
+; Start in the home directory.
+(setq default-directory "~/")
 
-;; Replace yes/no with y/n.
+; Replace yes/no with y/n.
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Use spaces instead of tabs.
+; Automatically complete.
+(ac-config-default)
+
+; Enable snippets globally.
+(yas-global-mode 1)
+
+; Use spaces instead of tabs.
 (setq-default indent-tabs-mode nil)
 
-;; Set the default TAB width.
-(setq tab-width 4)
-(defvar c-basic-offset 4)
-
-;; Store all file autosaves and backups in one directory.
+; Store all file autosaves and backups in one directory.
 (setq backup-directory-alist `(("." . "~/.backups")))
 
-;; Disable auto-save #files#.
+; Disable auto-save #files#.
 (setq auto-save-default nil)
 
-;; Allow copy/paste outwith emacs.
-(setq x-select-enable-clipboard t)
+; Display the directory if two buffers have the same name.
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;; Always follow symbolic links without a warning message.
+; Always follow symbolic links without a warning message.
 (setq vc-follow-symlinks t)
 
-;; Don't display message in scratch buffer.
-(setq initial-scratch-message nil)
+; Use cmd as meta rather than alt on mac.
+(setq mac-command-modifier 'meta)
 
-;; Remove trailing whitespace on save.
-(defvar delete-trailing-whitespace t)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; Always line wrap.
-(global-visual-line-mode t)
-
-;; Replace text with inserted while mark is active.
-(delete-selection-mode 1)
-
-;; Disallow creation of newlines at end of buffer.
+; Disallow creation of newlines at end of buffer.
 (setq next-line-add-newlines nil)
 (setq mode-require-final-newline nil)
 
-;; Match parenthesis.
-(electric-pair-mode 1)
+; Rebind commonly used functions.
+(global-set-key (kbd "C-o") 'other-window)
+(global-set-key (kbd "C-u") 'undo)
 
-;; Return to the last visited place in a file.
-(require 'saveplace)
-(setq-default save-place t)
+; Enable helm-mode globally.
+(helm-mode 1)
 
-;; Display the directory if two buffers have the same name.
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+; Sort helm results according to usage.
+(helm-adaptive-mode 1)
 
-;; Display file/directory names in the buffer list.
-(ido-mode)
-(defvar ido-enable-flex-matching t)
-(defvar ido-everywhere t)
-(autoload 'idomenu "idomenu" nil t)
+; helm for searching.
+(global-set-key (kbd "M-i") 'helm-swoop)
+(global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
+(global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
 
-;; Display ido mode vertically.
-(require 'ido-vertical-mode)
-(ido-vertical-mode)
+; helm for describe-bindings
+(global-set-key (kbd "C-h b")   'helm-descbinds)
 
-;; Display M-x commands in the buffer list like ido-mode.
-(require 'smex)
-(smex-initialize)
+; helm for switching buffers.
+(global-set-key (kbd "C-x b")   'helm-mini)
 
-;; Use markdown-mode for .md files.
-(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+; helm for managing the buffer list.
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
-;; Mode for note taking.
-(require 'org-install)
+; helm for executing functions.
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-m") 'helm-M-x)
+
+; helm for opening files.
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+; Static analysis for code.
+(eval-after-load 'flycheck
+  '(define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck))
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+
+(eval-after-load 'flycheck (flycheck-pos-tip-mode))
+
+(add-hook 'after-init-hook 'global-flycheck-mode)
+
+(with-eval-after-load 'flycheck
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+
+
+; Make eshell PATH the same as normal shell.
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+;; Shell pop-up.
+(setq shell-pop-shell-type (quote ("eshell" "*eshell*" (lambda nil (eshell)))))
+(global-set-key (kbd "C-c t") 'shell-pop)
+
+(with-eval-after-load "esh-opt"
+  (require 'virtualenvwrapper)
+  (venv-initialize-eshell)
+  (autoload 'epe-theme-lambda "eshell-prompt-extras")
+  (setq eshell-highlight-prompt nil
+        eshell-prompt-function 'epe-theme-lambda))
+
+; Multiple cursors.
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+; Undo tree
+(global-undo-tree-mode)
+
+; Highlight matching parenthesis.
+(show-paren-mode 1)
+
+; Match parenthesis automatically.
+(smartparens-global-mode)
+
+; avy search by char.
+(avy-setup-default)
+(global-set-key (kbd "C-c k") 'avy-goto-char)
+(global-set-key (kbd "C-c l") 'avy-goto-line)
+
+; Better popup windows.
+(require 'popwin)
+(popwin-mode 1)
+
+; org mode.
 (setq org-startup-indented t)
 (setq org-src-fontify-natively t)
 (setq org-html-postamble nil)
 (setq org-html-htmlize-output-type 'css)
+(setq org-agenda-files '("~/Org"))
+(setq org-capture-templates
+      '(("i" "Idea" entry (file+datetree "~/Org/ideas.org")
+         "* %?\nEntered on %U\n  %i\n  %a")
+        ("n" "Note" entry (file+datetree "~/Org/notes.org")
+         "* %?\nEntered on %U\n  %i\n  %a")
+        ("t" "Todo" entry (file+headline "~/Org/tasks.org")
+         "* TODO %?\n  %i\n  %a")))
+(global-set-key (kbd "C-c c") 'org-capture)
 
-(defun org-html-publish-dir()
-  "Publish all org files in a directory"
-  (interactive)
-  (save-excursion
-    (mapc
-     (lambda (file)
-       (with-current-buffer
-       (find-file-noselect file)
-     (org-html-export-to-html)))
-       (file-expand-wildcards  "*.org"))))
-
-;; Ensure environment variables are present within Emacs shell.
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
-
-;; Web dev mode for HTML templates.
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
-
-;; JavaScript mode.
-(require 'js2-mode)
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
-
-;; Snippets
-(require 'yasnippet)
-(yas-global-mode 1)
-
-;; Jump to position quickly.
-(require 'ace-jump-mode)
-(autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
-;; package-install auto-complete
-(ac-config-default)
-
-;; package-install flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(with-eval-after-load 'flycheck
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-
-;; Custom Keybindings.
-(global-set-key "\C-x\C-m" 'smex)
-(global-set-key "\C-o" 'other-window)
-(global-set-key "\C-u" 'undo)
-(global-set-key "\C-l" 'goto-line)
-(global-set-key "\C-x\C-b" 'ibuffer)
-(global-set-key "\M-/" 'hippie-expand)
-
-;; Use cmd as meta rather than alt on mac.
-(setq mac-command-modifier 'meta)
-
-;; Remove useless GUI components.
+; Remove useless GUI components.
 (setq inhibit-startup-echo-area-message t)
 (setq inhibit-startup-message t)
 (menu-bar-mode 0)
@@ -154,15 +144,7 @@
 (scroll-bar-mode 0)
 (fringe-mode 0)
 
-;; Parenthesis matching.
-(show-paren-mode t)
-(setq show-paren-delay 0)
-(setq show-paren-style 'mixed)
-
-;; Set the cursor type to a horizontal bar.
-(setq default-cursor-type 'hbar)
-
-;; Set the default font.
+; Set the default font.
 (setq default-frame-alist
       '((font . "Monaco-14")
         (vertical-scroll-bars)
@@ -171,26 +153,21 @@
         (right-fringe . 0)
         (menu-bar-lines . 0)))
 
-;; Set the theme.
-(if window-system
-    (progn
-        (add-to-list 'custom-theme-load-path "~/.dotfiles/emacs/themes")
-        (load-theme 'spacegray t)))
-
-;; Customise the mode line.
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(flycheck-color-mode-line-error-face ((t (:inherit flycheck-fringe-error :background "Red" :foreground "White" :weight normal))))
+ '(flycheck-color-mode-line-info-face ((t (:inherit flycheck-fringe-info :background "Cyan" :foreground "White" :weight normal))))
+ '(flycheck-color-mode-line-warning-face ((t (:inherit flycheck-fringe-warning :background "Orange" :foreground "White" :weight normal))))
  '(mode-line ((t (:family "Monaco")))))
-(setq-default mode-line-format
-              (list
-               " "
-               '(:eval (propertize "%b" 'face 'font-lock-keyword-face))
-               " %l [%m] "
-               '(:eval (if (equal erc-modified-channels-object "") " " ""))
-               '(t erc-modified-channels-object)
-               "["
-               '(:eval (if overwrite-mode "Ovr" "Ins"))
-               '(:eval (when (buffer-modified-p) (concat ":Mod")))
-               '(:eval (when buffer-read-only (concat ":RO")))
-               "] ["
-               '(:eval (format-time-string "%H:%M"))
-               "] %-"))
+
+; Custom mode line.
+(powerline-default-theme)
+
+; Enable the spacegray color theme.
+(load-theme 'spacegray t)
+
+; Fullscreen.
+(toggle-frame-fullscreen)
