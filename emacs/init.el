@@ -30,6 +30,9 @@
 ; Always follow symbolic links without a warning message.
 (setq vc-follow-symlinks t)
 
+; Auto relaod files on change.
+(global-auto-revert-mode t)
+
 ; Use cmd as meta rather than alt on mac.
 (setq mac-command-modifier 'meta)
 
@@ -80,8 +83,7 @@
 (add-hook 'after-init-hook 'global-flycheck-mode)
 
 (with-eval-after-load 'flycheck
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc javascript-jshint)))
 
 ; Make eshell PATH the same as normal shell.
 (when (memq window-system '(mac ns))
@@ -102,6 +104,7 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C->") 'mc/mark-all-in-region)
 
 ; Undo tree
 (global-undo-tree-mode)
@@ -109,8 +112,9 @@
 ; Highlight matching parenthesis.
 (show-paren-mode 1)
 
-; Match parenthesis automatically.
-(smartparens-global-mode)
+; Match parens. 
+(electric-pair-mode 1)
+(electric-indent-mode 1)
 
 ; avy search by char.
 (avy-setup-default)
@@ -126,24 +130,23 @@
 (setq org-src-fontify-natively t)
 (setq org-html-postamble nil)
 (setq org-html-htmlize-output-type 'css)
-(setq org-agenda-files '("~/Org"))
-(setq org-capture-templates
-      '(("i" "Idea" entry (file+datetree "~/Org/ideas.org")
-         "* %?\nEntered on %U\n  %i\n  %a")
-        ("n" "Note" entry (file+datetree "~/Org/notes.org")
-         "* %?\nEntered on %U\n  %i\n  %a")
-        ("t" "Todo" entry (file+headline "~/Org/tasks.org")
-         "* TODO %?\n  %i\n  %a")))
 (global-set-key (kbd "C-c c") 'org-capture)
 
 ; JavaScript
-(add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js[x]\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.json]\\'" . json-mode))
 
 ; HTML
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+; Jade/Pug
+(add-to-list 'auto-mode-alist '("\\.pug\\'" . jade-mode))
+
 ; Python
 (add-hook 'python-mode-hook 'anaconda-mode)
+
+; Swift
+(add-to-list 'auto-mode-alist '("\\.swift\\'" . swift-mode))
 
 ; Remove useless GUI components.
 (setq inhibit-startup-echo-area-message t)
@@ -155,7 +158,7 @@
 
 ; Set the default font.
 (setq default-frame-alist
-      '((font . "Monaco-14")
+      '((font . "Hack-14")
         (vertical-scroll-bars)
         (tool-bar-lines . 0)
         (left-fringe . 0)
@@ -170,7 +173,7 @@
  '(flycheck-color-mode-line-error-face ((t (:inherit flycheck-fringe-error :background "Red" :foreground "White" :weight normal))))
  '(flycheck-color-mode-line-info-face ((t (:inherit flycheck-fringe-info :background "Cyan" :foreground "White" :weight normal))))
  '(flycheck-color-mode-line-warning-face ((t (:inherit flycheck-fringe-warning :background "Orange" :foreground "White" :weight normal))))
- '(mode-line ((t (:family "Monaco")))))
+ '(mode-line ((t (:family "Hack")))))
 
 ; Custom mode line.
 (powerline-default-theme)
@@ -179,4 +182,4 @@
 (load-theme 'spacegray t)
 
 ; Fullscreen.
-(toggle-frame-fullscreen)
+; (toggle-frame-fullscreen)
