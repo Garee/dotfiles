@@ -4,8 +4,6 @@ DIR=$(pwd)
 
 rm -f $HOME/.bash_profile
 rm -f $HOME/.gitconfig
-rm -f $HOME/.emacs
 
 ln -s $DIR/.bash_profile $HOME/.bash_profile
 ln -s $DIR/.gitconfig $HOME/.gitconfig
-ln -s $DIR/emacs/init.el $HOME/.emacs

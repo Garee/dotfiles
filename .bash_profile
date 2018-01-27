@@ -5,6 +5,7 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 # Aliases
+alias g=git
 alias grep='grep --color=auto'
 alias ls='ls -lFho'
 alias reload='source $HOME/.bash_profile'
