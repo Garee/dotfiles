@@ -7,8 +7,9 @@ fi
 # Aliases
 alias g=git
 alias grep='grep --color=auto'
-alias ls='ls -lFho'
+alias ls='ls -lGFho'
 alias reload='source $HOME/.bash_profile'
+alias python='python3'
 
 # Get the current branch in the git repository.
 function parse_git_branch() {
@@ -20,3 +21,5 @@ function parse_git_branch() {
 
 # Set the look of the command line prompt.
 export PS1="\n[\d \A] [\u@\h] \w \`parse_git_branch\` \n$ "
+
+export PATH="$HOME/.cargo/bin:$PATH"
