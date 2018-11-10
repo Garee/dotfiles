@@ -1,19 +1,33 @@
 [user]
 	name = Gary Blackwood
-	email = gareeblackwood@gmail.com
+	email = gary@garyblackwood.co.uk
 [color]
 	ui = true
 [alias]
-        diff = diff --color
-	log = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-        st = status
+        a = add
+        aa = add --all
+        b = branch
+        c = commit
         co = checkout
-        di = diff
+        cob = checkout -b
+        d = diff
+        f = fetch
+        l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        lg = log --pretty --graph --decorate --all
         pl = pull
         ps = push
-        lo = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+        r = reset
+        rb = rebase
+        rbi = rebase -i
+        s = status
+        st = stash
+
+        prune = fetch --prune
+        undo = reset --soft HEAD^
+        stash-all = stash save --include-untracked
 [merge]
 	ff = only
+        conflictstyle = diff3
 [push]
 	default = simple
 	followTags = true
