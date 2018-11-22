@@ -19,4 +19,8 @@ function cmds
     echo "pgcli      - Postgres CLI"
     echo "mycli      - MySQL CLI"
     echo "ddgr       - Search duckduckgo.com"
+    echo "spark      - Sparklines for your shell"
+    echo "surge      - Free static web publishing"
+    echo "loadtest   - Run a load test on a URL"
+    echo "pv         - Monitor the progress of data through a pipeline"
 end
