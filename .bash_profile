@@ -5,9 +5,10 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 # Aliases
+alias e=emacs
 alias g=git
 alias grep='grep --color=auto'
-alias ls='ls -lGFho'
+alias ls='ls -lGFho --color=auto'
 alias reload='source $HOME/.bash_profile'
 alias python='python3'
 

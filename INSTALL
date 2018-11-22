@@ -4,6 +4,11 @@ DIR=$(pwd)
 
 rm -f $HOME/.bash_profile
 rm -f $HOME/.gitconfig
+rm -f $HOME/.emacs
+rm -f $HOME/.config/fish
 
 ln -s $DIR/.bash_profile $HOME/.bash_profile
 ln -s $DIR/.gitconfig $HOME/.gitconfig
+ln -s $DIR/.emacs $HOME/.emacs
+ln -s $DIR/fish $HOME/.config/fish
+
