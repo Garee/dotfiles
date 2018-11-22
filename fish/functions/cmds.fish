@@ -20,7 +20,9 @@ function cmds
     echo "mycli      - MySQL CLI"
     echo "ddgr       - Search duckduckgo.com"
     echo "spark      - Sparklines for your shell"
-    echo "surge      - Free static web publishing"
+    echo "now        - Free static web publishing"
     echo "loadtest   - Run a load test on a URL"
     echo "pv         - Monitor the progress of data through a pipeline"
+    echo "asciinema  - Recordd and share your terminal session"
+    echo "fkill      - Kill processes"
 end
