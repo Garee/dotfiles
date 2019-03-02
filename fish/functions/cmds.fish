@@ -25,4 +25,5 @@ function cmds
     echo "pv         - Monitor the progress of data through a pipeline"
     echo "asciinema  - Recordd and share your terminal session"
     echo "fkill      - Kill processes"
+    echo "serve      - Static file serving and directory listing"
 end

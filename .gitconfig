@@ -16,6 +16,7 @@
         lg = log --pretty --graph --decorate --all
         pl = pull
         ps = push
+        pom = push origin master
         r = reset
         rb = rebase
         rbi = rebase -i
@@ -35,3 +36,5 @@
 	showUntrackedFiles = all
 [transfer]
 	fsckobjects = true
+[core]
+	editor = "emacsclient -t"

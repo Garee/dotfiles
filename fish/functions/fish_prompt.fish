@@ -24,9 +24,19 @@ function fish_prompt --description 'Write out the prompt'
     echo -n ' '
 
     if test $git_branch
+        set_color $fish_color_param
         echo -n '('
         echo -n $git_branch
         echo -n ')'
+        set_color normal
+    end
+
+    if test $VIRTUAL_ENV
+        set_color $fish_color_operator
+        echo -n ' ('
+        echo -n (echo -n $VIRTUAL_ENV | rev | cut -d/ -f1 | rev)
+        echo -n ')'
+        set_color normal
     end
 
     echo
