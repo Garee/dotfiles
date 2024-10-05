@@ -43,7 +43,7 @@
 ; Highlight matching parenthesis.
 (show-paren-mode 1)
 
-; Match parens. 
+; Match parens.
 (electric-pair-mode 1)
 (electric-indent-mode 1)
 

@@ -3,38 +3,18 @@
 	email = gary@garyblackwood.co.uk
 [color]
 	ui = true
-[alias]
-        a = add
-        aa = add --all
-        b = branch
-        c = commit
-        co = checkout
-        cob = checkout -b
-        d = diff
-        f = fetch
-        l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-        lg = log --pretty --graph --decorate --all
-        pl = pull
-        ps = push
-        pom = push origin master
-        r = reset
-        rb = rebase
-        rbi = rebase -i
-        s = status
-        st = stash
-
-        prune = fetch --prune
-        undo = reset --soft HEAD^
-        stash-all = stash save --include-untracked
 [merge]
 	ff = only
-        conflictstyle = diff3
+        conflictstyle = zdiff3
 [push]
 	default = simple
 	followTags = true
+        autoSetupRemote = true
 [status]
 	showUntrackedFiles = all
 [transfer]
 	fsckobjects = true
 [core]
-	editor = "emacsclient -t"
+	editor = "nano"
+[init]
+        defaultBranch = main
