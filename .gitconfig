@@ -1,20 +1,20 @@
 [user]
-	name = Gary Blackwood
-	email = gary@garyblackwood.co.uk
+    name = Gary Blackwood
+    email = gary@garyblackwood.co.uk
 [color]
-	ui = true
+    ui = true
 [merge]
-	ff = only
-        conflictstyle = zdiff3
+    ff = only
+    conflictstyle = zdiff3
 [push]
-	default = simple
-	followTags = true
-        autoSetupRemote = true
+    default = simple
+    followTags = true
+    autoSetupRemote = true
 [status]
-	showUntrackedFiles = all
+    showUntrackedFiles = all
 [transfer]
-	fsckobjects = true
+    fsckobjects = true
 [core]
-	editor = "nano"
+    editor = "nano"
 [init]
-        defaultBranch = main
+    defaultBranch = main
